@@ -7,18 +7,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _gridX;
     [SerializeField] private int _gridY;
     [SerializeField] private GameObject[] _gameObject;
+    [SerializeField] private Camera _camera;
 
     private void Start()
     {
         CreateGrid();
+        _camera = Camera.main;
     }
 
-
-
-    private void OnMouseDown()
-    {
-        Debug.Log("Clicked");
-    }
 
     private void CreateGrid()
     {
