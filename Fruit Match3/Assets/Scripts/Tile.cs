@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Tile : MonoBehaviour
 {
-    private Color _originColor;
-    private static Tile[] _selectedTile =  new Tile[2];
-    private SpriteRenderer _spriteRenderer;
+    private Color _originColor;   // Start Color 
+    private SpriteRenderer _spriteRenderer;  
+    private int _gridX, _gridY; // Tilelarýn Grdi üzerinde ki yeri 
+    private GameManager _gameManager;
 
     private void Start()
     {
@@ -17,41 +19,48 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_selectedTile[0] == this)
-        {
-            DelesectTile(0);
-            return;
-        }
-        else if (_selectedTile[1] == this)
-        {
-            DelesectTile(1);
-            return;
-        }
-
-
-        if (_selectedTile[0] == null)
-        {
-            SelectTile(0);
-        }
-        else if(_selectedTile[1] == null)
-        {
-            SelectTile(1);
-            Debug.Log("Ýki taþ seçildi....");
-        }
+       GameEvent.OnClickEvents?.Invoke(this);
+        // Mouse Sol Týk Events
     }
 
-    private void SelectTile(int v)
+    public void Initialize(int x,int y , GameManager manager)
     {
-        _selectedTile[v] = this;
-        _spriteRenderer.color = Color.gray;  // Seçili Taþý gri yaptýk
+        _gridX = x;
+        _gridY = y;
+        _gameManager = manager;
     }
-
-    private void DelesectTile(int index)
+    private void SelectTile(Tile tile)
     {
-        if (_selectedTile[index]!= null)
+        if(tile == this)  // Param olarak aldýðý Tile'ý gri yap
         {
-            _selectedTile[index]._spriteRenderer.color = _selectedTile[index]._originColor;
-            _selectedTile[index] = null;
+            _spriteRenderer.color = Color.gray;  // Seçili Taþý gri yaptýk
+
         }
     }
+
+    private void DeSelectedTile(int index) // Param olarak aldýðý Tile' eski rengi yap
+    {
+           _spriteRenderer.color = _originColor;
+
+    }
+
+
+    private void OnEnable() => RegisterEvents();
+    private void OnDisable() => UnRegisterEvents();
+
+    private void RegisterEvents()
+    {
+        GameEvent.UnSelectsTile += DeSelectedTile;
+        GameEvent.SelectsTile += SelectTile;
+    }
+    private void UnRegisterEvents()
+    {
+        GameEvent.UnSelectsTile -= DeSelectedTile;
+        GameEvent.SelectsTile -= SelectTile;
+    }
+    //  Seçim SOnrasý rengi eski haline getirme Eventi
+
+
+
+
 }
