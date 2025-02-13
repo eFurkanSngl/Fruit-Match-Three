@@ -9,6 +9,6 @@ public static class GameEvent
 {
     public static UnityAction<Tile> OnClickEvents;
 
-    public static UnityAction<int> UnSelectsTile;
+    public static UnityAction<Tile> UnSelectsTile;
     public static UnityAction<Tile> SelectsTile;
 }

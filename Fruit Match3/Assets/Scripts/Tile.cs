@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,10 +12,15 @@ public class Tile : MonoBehaviour
     private int _gridX, _gridY; // Tilelarýn Grdi üzerinde ki yeri 
     private GameManager _gameManager;
 
+    public int GridX => _gridX;  // Getter ile deðere dýþardan eriþim
+    public int GridY => _gridY;
+
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _originColor = _spriteRenderer.color;
+        _gameManager = FindObjectOfType<GameManager>();
+
     }
 
     private void OnMouseDown()
@@ -38,7 +44,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    private void DeSelectedTile(int index) // Param olarak aldýðý Tile' eski rengi yap
+    private void DeSelectedTile(Tile tile) // Param olarak aldýðý Tile' eski rengi yap
     {
            _spriteRenderer.color = _originColor;
 
