@@ -17,11 +17,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Ease swapEase = Ease.InOutBack;
     private bool _isSwapping = false;
 
+    [SerializeField] private GameObject _tileBg;
+    private GameObject[,] _bgTiles; // Tile BG leri tutan liste
+
     private void Start()
     {
         CreateGrid();
+        CreateGridBackground();
         DOTween.SetTweensCapacity(500, 50);
-
+        CameraFilterEvents.CameraEvents?.Invoke(_gridX, _gridY);
+        GridUIEvents.GridEvents?.Invoke(_gridX, _gridY);
     }
 
 
@@ -42,6 +47,23 @@ public class GameManager : MonoBehaviour
                 tile.Initialize(i, j, this);
 
                 _tiles[i,j] = tile;
+            
+            }
+        }
+    }
+
+    private void CreateGridBackground()
+    {
+        _bgTiles = new GameObject[_gridX , _gridY]; // Gride göre bg leri tutacaz
+
+        for(int i = 0; i < _gridX; i++)
+        {
+            for(int j = 0; j < _gridY; j++)
+            {
+                Vector3 pos = new Vector3(transform.position.x + i, transform.position.y + j, 0);
+                GameObject bg = Instantiate(_tileBg, pos, Quaternion.identity);
+                bg.transform.SetParent(transform);
+                _bgTiles[i, j] = bg;
             }
         }
     }
@@ -122,21 +144,14 @@ public class GameManager : MonoBehaviour
             _tiles[tile2X,tile2Y] = tempTile;
             // _tiles Arrayda ki Tilelarýn yerini deðiþtirdik
 
-            // Tilerlarýn grid Koord güncelliyoruz
-            _selectedTiles[0].Initialize(tile2X, tile2Y,this);
-            _selectedTiles[1].Initialize(tile1X, tile1Y,this);
-
-
-            //Vector3 pos = _selectedTiles[0].transform.position;
-            //_selectedTiles[0].transform.position = _selectedTiles[1].transform.position;
-            //_selectedTiles[1].transform.position = pos;
-
-            //DeSelectTile(_selectedTiles[0]);
-            //DeSelectTile(_selectedTiles[1]);
+            //// Tilerlarýn grid Koord güncelliyoruz
+            _selectedTiles[0].Initialize(tile2X, tile2Y, this);
+            _selectedTiles[1].Initialize(tile1X, tile1Y, this);
 
             PlaySwapAnim(_selectedTiles[0], _selectedTiles[1],tempTile.transform.position);
         }
     }
+
 
     private void PlaySwapAnim(Tile firstTile, Tile secondTile, Vector3 targetPos)
     {

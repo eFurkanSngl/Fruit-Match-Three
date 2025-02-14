@@ -15,6 +15,9 @@ public class Tile : MonoBehaviour
     public int GridX => _gridX;  // Getter ile deðere dýþardan eriþim
     public int GridY => _gridY;
 
+    [SerializeField] private int _tileId;
+    public int TileID => _tileId;
+
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -29,17 +32,17 @@ public class Tile : MonoBehaviour
         // Mouse Sol Týk Events
     }
 
-    public void Initialize(int x,int y , GameManager manager)
+    public void Initialize(int x,int y ,GameManager gameManager)
     {
         _gridX = x;
         _gridY = y;
-        _gameManager = manager;
+        _gameManager= gameManager;
     }
     private void SelectTile(Tile tile)
     {
         if(tile == this)  // Param olarak aldýðý Tile'ý gri yap
         {
-            _spriteRenderer.color = Color.gray;  // Seçili Taþý gri yaptýk
+            _spriteRenderer.color = Color.white;  // Seçili Taþý gri yaptýk
 
         }
     }
