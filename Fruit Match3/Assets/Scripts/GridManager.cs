@@ -6,18 +6,21 @@ using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Grid Settings")]
     [SerializeField] private int _gridX;
     [SerializeField] private int _gridY;
-    [SerializeField] private GameObject[] _gameObject;
+
+
+    [Header("Tile Settings")]
+    [SerializeField] private GameObject[] _tileObject;   // Prefab
+    [SerializeField] private GameObject _tileBg;  // Tile bg
+    [SerializeField] private float _swapDuration = 3f;  // anim süre
+    [SerializeField] private Ease swapEase = Ease.InOutBack; // anim tipi
+
 
     private Tile[,] _tiles;   // Tilelarý tutan 2D bir array
     private Tile[] _selectedTiles = new Tile[2];  // Seçilen Taþlarý Tutan bir array
-
-    [SerializeField] private float _swapDuration = 3f;
-    [SerializeField] private Ease swapEase = Ease.InOutBack;
     private bool _isSwapping = false;
-
-    [SerializeField] private GameObject _tileBg;
     private GameObject[,] _bgTiles; // Tile BG leri tutan liste
 
     private void Start()
@@ -38,20 +41,26 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < _gridY; j++)
             {
-
+           
                 Vector3 pos = new Vector3(transform.position.x + i, transform.position.y + j, 0);
-                int randomIndex = Random.Range(0, _gameObject.Length);
+                int  randomIndex = Random.Range(0, _tileObject.Length);
 
-                GameObject Obj = Instantiate(_gameObject[randomIndex], pos, Quaternion.identity);
-                Tile tile = Obj.GetComponent<Tile>();
-                tile.Initialize(i, j, this);
+                 GameObject obj = Instantiate(_tileObject[randomIndex], pos, Quaternion.identity);
+                 Tile tile = obj.GetComponent<Tile>();
+                 tile.Initialize(i, j, this);
 
                 _tiles[i,j] = tile;
             
             }
         }
     }
+  
+    //private List<int> HasMatchesStart(int x , int y)
+    //{
+    //    List<int> matches = new List<int>();
 
+    //    for(int i = 0; i < )
+    //}
     private void CreateGridBackground()
     {
         _bgTiles = new GameObject[_gridX , _gridY]; // Gride göre bg leri tutacaz
