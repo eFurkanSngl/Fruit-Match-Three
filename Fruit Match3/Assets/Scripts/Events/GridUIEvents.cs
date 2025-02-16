@@ -8,4 +8,5 @@ using UnityEngine.Events;
 public static class GridUIEvents
 {
     public static UnityAction<int, int> GridEvents;
+    public static UnityAction<int, int> GridBorderEvents;
 }

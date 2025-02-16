@@ -43,24 +43,44 @@ public class GameManager : MonoBehaviour
             {
            
                 Vector3 pos = new Vector3(transform.position.x + i, transform.position.y + j, 0);
-                int  randomIndex = Random.Range(0, _tileObject.Length);
-
+                int  randomIndex = HasMatchStart(i, j);
                  GameObject obj = Instantiate(_tileObject[randomIndex], pos, Quaternion.identity);
                  Tile tile = obj.GetComponent<Tile>();
-                 tile.Initialize(i, j, this);
+                 tile.Initialize(i, j, this); 
 
                 _tiles[i,j] = tile;
+                obj.transform.SetParent(transform);
             
             }
         }
-    }
-  
-    //private List<int> HasMatchesStart(int x , int y)
-    //{
-    //    List<int> matches = new List<int>();
+        GridUIEvents.GridBorderEvents?.Invoke(_gridX, _gridY);
 
-    //    for(int i = 0; i < )
-    //}
+    }
+
+    private int HasMatchStart(int x, int y)
+    {
+        int leftTileId;
+        if (x > 0)
+        {
+            leftTileId = _tiles[x -1,y].TileID;
+        }
+        else
+        {
+            leftTileId = -1;
+        }
+        int bottomTileId = (y > 0) ? _tiles[x, y - 1].TileID : -1;
+
+        int randomIndex = Random.Range(0,_tileObject.Length);
+
+        // Eðer seçilen tile sol veya alt tile ile aynýysa, bir sonraki tile'ý seç
+        int currentId = _tileObject[randomIndex].GetComponent<Tile>().TileID;
+        if (currentId == leftTileId || currentId == bottomTileId)
+        {
+            randomIndex = (randomIndex + 1) % _tileObject.Length;
+        }
+        return randomIndex;
+    }
+
     private void CreateGridBackground()
     {
         _bgTiles = new GameObject[_gridX , _gridY]; // Gride göre bg leri tutacaz
@@ -88,6 +108,7 @@ public class GameManager : MonoBehaviour
             DeSelectTile(tile);
 
         }
+        //Seçim varsa temizliyor
         else
         {
             if (_selectedTiles[0] == null)
@@ -104,6 +125,7 @@ public class GameManager : MonoBehaviour
                  SwapTiles();               
             }
         }
+        // yoksa ve boþsa Tile olarak tanýmlýyor seçim ekliyor
     }
 
     private void OnEnable()=>RegisterEvents();
@@ -113,17 +135,6 @@ public class GameManager : MonoBehaviour
     private void UnRegisterEvents() => GameEvent.OnClickEvents -= SelectedTile;
     // Mouse Sol Týk Eventi.
 
-    private bool TileMoveCheck(Tile tile1, Tile tile2)
-    {
-        int xCheck = Mathf.Abs(tile1.GridX - tile2.GridX);
-        // GridX - Tile classýndan Getter  iki tile arasýn da ki X poz Kontrol
-
-        int yCheck = Mathf.Abs(tile1.GridY - tile2.GridY); 
-        // GridY - Tile class Getter iki tile arasý Y poz kontrol
-
-        return (xCheck == 1 && yCheck == 0)  || (xCheck == 0 && yCheck == 1);
-        // böyle ise True döner swap çalýþýr
-    }
 
     private void SwapTiles()
     {
@@ -161,6 +172,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private bool TileMoveCheck(Tile tile1, Tile tile2)
+    {
+        int xCheck = Mathf.Abs(tile1.GridX - tile2.GridX);
+        // GridX - Tile classýndan Getter  iki tile arasýn da ki X poz Kontrol
+
+        int yCheck = Mathf.Abs(tile1.GridY - tile2.GridY);
+        // GridY - Tile class Getter iki tile arasý Y poz kontrol
+
+        return (xCheck == 1 && yCheck == 0) || (xCheck == 0 && yCheck == 1);
+        // iki grid arasýnda x veya y de 1 birim uzaktaysa hareket ettir
+    }
 
     private void PlaySwapAnim(Tile firstTile, Tile secondTile, Vector3 targetPos)
     {
