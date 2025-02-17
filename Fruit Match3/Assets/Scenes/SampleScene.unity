@@ -153,13 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _borderTop: {fileID: 1388631738920167671, guid: 216912eb20f1f8a4eabaf0e3c956e09e, type: 3}
-  _borderTopRight: {fileID: 5304655547884517780, guid: 19aae95458d20d54b881d3f4fdeba3c9, type: 3}
-  _borderTopLeft: {fileID: 2961573496848053609, guid: 9ed0dacbb8099eb47b61f47c79a52c59, type: 3}
   _borderRight: {fileID: 4687260370398167953, guid: 7ec5ecd98513de24db2bfcbd0f7d8774, type: 3}
   _borderLeft: {fileID: 8560284120180553017, guid: f6b13494b08212e4594d8c5c791925e1, type: 3}
   _borderBottom: {fileID: 3707817449448934299, guid: 654550a71d463444b8a2e202feb28dee, type: 3}
-  _borderBottomLeft: {fileID: 6358877615778456360, guid: c534de1a75c4c794081b069fe7800d24, type: 3}
-  _borderBottomRight: {fileID: 2172175892169978922, guid: 56544e1c420c1ba45b02d0dda292c859, type: 3}
 --- !u!4 &230826605
 Transform:
   m_ObjectHideFlags: 0
@@ -268,7 +264,7 @@ Transform:
   m_GameObject: {fileID: 884398700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.01, y: 1.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

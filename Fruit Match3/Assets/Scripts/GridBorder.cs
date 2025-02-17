@@ -21,7 +21,7 @@ public class GridBorder : MonoBehaviour
         {
             Destroy(obj);
         }
-        _borderObjects.Clear();
+        _borderObjects.Clear();  // Grid varsa onu yok ediyoruz.
 
         // Baþlangýç noktasý
         float startX = transform.position.x;  // objelerin baþlangýç x ve y sini alýyoruz ( 0 )
@@ -32,8 +32,10 @@ public class GridBorder : MonoBehaviour
             // Top border'ýn Y'si gridY pozisyonunda olacak
             _borderObjects.Add(Instantiate(_borderTop, new Vector3(startX + i, startY + (gridY - 0.89f), 0), Quaternion.identity, transform));
 
+
             // Alt border'ýn Y'si -1 pozisyonunda olacak
             _borderObjects.Add(Instantiate(_borderBottom, new Vector3(startX + i, startY - 0.13f, 0), Quaternion.identity, transform));
+       
         }
 
         // Sol ve sað kenarlarý yerleþtiriyoruz
@@ -43,7 +45,7 @@ public class GridBorder : MonoBehaviour
             _borderObjects.Add(Instantiate(_borderLeft, new Vector3(startX - 1, startY + i, 0), Quaternion.identity, transform));
 
             // Sað border'ýn X'si gridX pozisyonunda olacak
-            _borderObjects.Add(Instantiate(_borderRight, new Vector3(startX + gridY - 0.85f, startY + i, 0), Quaternion.identity, transform));
+            _borderObjects.Add(Instantiate(_borderRight, new Vector3(startX + gridX - 0.85f, startY + i, 0), Quaternion.identity, transform));
         }
         Debug.Log("baþlangýç poz" + startX);
         Debug.Log("baþlangýç poz" + startY);

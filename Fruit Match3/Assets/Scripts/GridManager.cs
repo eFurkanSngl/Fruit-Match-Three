@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CreateGrid();
-        CreateGridBackground();
+        CreateTileBackground();
         DOTween.SetTweensCapacity(500, 50);
         CameraFilterEvents.CameraEvents?.Invoke(_gridX, _gridY);
         GridUIEvents.GridEvents?.Invoke(_gridX, _gridY);
@@ -72,22 +72,23 @@ public class GameManager : MonoBehaviour
 
         int randomIndex = Random.Range(0,_tileObject.Length);
 
-        // Eðer seçilen tile sol veya alt tile ile aynýysa, bir sonraki tile'ý seç
         int currentId = _tileObject[randomIndex].GetComponent<Tile>().TileID;
         if (currentId == leftTileId || currentId == bottomTileId)
         {
             randomIndex = (randomIndex + 1) % _tileObject.Length;
+            // Eðer seçilen tile sol veya alt tile ile aynýysa, bir sonraki tile'ý seç
+
         }
         return randomIndex;
     }
 
-    private void CreateGridBackground()
+    private void CreateTileBackground()
     {
-        _bgTiles = new GameObject[_gridX , _gridY]; // Gride göre bg leri tutacaz
+        _bgTiles = new GameObject[_gridX, _gridY]; // Gride göre bg leri tutacaz
 
-        for(int i = 0; i < _gridX; i++)
+        for (int i = 0; i < _gridX; i++)
         {
-            for(int j = 0; j < _gridY; j++)
+            for (int j = 0; j < _gridY; j++)
             {
                 Vector3 pos = new Vector3(transform.position.x + i, transform.position.y + j, 0);
                 GameObject bg = Instantiate(_tileBg, pos, Quaternion.identity);

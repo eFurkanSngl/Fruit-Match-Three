@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class Tile : MonoBehaviour
 {
     private Color _originColor;   // Start Color 
