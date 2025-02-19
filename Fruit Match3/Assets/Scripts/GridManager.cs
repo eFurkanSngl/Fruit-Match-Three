@@ -16,12 +16,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _tileBg;  // Tile bg
     [SerializeField] private float _swapDuration = 3f;  // anim süre
     [SerializeField] private Ease swapEase = Ease.InOutBack; // anim tipi
-
+    
 
     private Tile[,] _tiles;   // Tilelarý tutan 2D bir array
     private Tile[] _selectedTiles = new Tile[2];  // Seçilen Taþlarý Tutan bir array
     private bool _isSwapping = false;
     private GameObject[,] _bgTiles; // Tile BG leri tutan liste
+    private CheckMatches _checkMatch;
 
     private void Start()
     {
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
         DOTween.SetTweensCapacity(500, 50);
         CameraFilterEvents.CameraEvents?.Invoke(_gridX, _gridY);
         GridUIEvents.GridEvents?.Invoke(_gridX, _gridY);
+        _checkMatch =  GetComponent<CheckMatches>();
+        StartCoroutine(DestroyRoutine());
     }
 
 
@@ -57,6 +60,35 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void HasAnyMatches()
+    {
+        List<Tile> matchedTile = _checkMatch.FindTileMatches(_tiles, _gridX, _gridY);
+
+        if(matchedTile.Count>0)
+        {
+            foreach (Tile tile in matchedTile)
+            {
+                Destroy(tile.gameObject);
+                Debug.Log("destroy");
+            }
+        }
+    }
+    IEnumerator DestroyRoutine()
+    {
+        if (_isSwapping)
+        {
+        yield return new WaitForSeconds(1f);
+        }
+          HasAnyMatches();
+    }
+
+    private void Update()
+    {
+        if (_isSwapping)
+        {
+            HasAnyMatches();
+        }
+    }
     private int HasMatchStart(int x, int y)
     {
         int leftTileId;

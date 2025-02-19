@@ -12,11 +12,10 @@ public class Tile : MonoBehaviour
     private SpriteRenderer _spriteRenderer;  
     private int _gridX, _gridY; // Tilelarýn Grdi üzerinde ki yeri 
     private GameManager _gameManager;
+    [SerializeField] private int _tileId;
 
     public int GridX => _gridX;  // Getter ile deðere dýþardan eriþim
     public int GridY => _gridY;
-
-    [SerializeField] private int _tileId;
     public int TileID => _tileId;
 
     private void Start()
