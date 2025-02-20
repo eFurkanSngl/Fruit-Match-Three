@@ -203,10 +203,8 @@ public class GameManager : MonoBehaviour
 
     private void SwapTiles()
     {
-
         if (_isFalling)
         {
-
             DeSelectTile(_selectedTiles[0]);  //isFalling True olunca seçimleri sýfýrla
             DeSelectTile(_selectedTiles[1]);
             return;
@@ -214,7 +212,6 @@ public class GameManager : MonoBehaviour
 
         if (_selectedTiles[0]!=null && _selectedTiles[1] != null)
         {
-
             if (!TileMoveCheck(_selectedTiles[0], _selectedTiles[1])) // taþlarý komþu diye kontrol ediyor
             {
                
@@ -225,27 +222,72 @@ public class GameManager : MonoBehaviour
             }
             _isSwapping = true;
 
+            Vector3 firstPos = _selectedTiles[0].transform.position;
+            Vector3 secondPos = _selectedTiles[1].transform.position;
 
-            int tile1X = _selectedTiles[0].GridX;
-            int tile1Y = _selectedTiles[0].GridY;
-            // ilk Seçilen Tile ýn koord saklýyoruz
-            int tile2X = _selectedTiles[1].GridX;
-            int tile2Y = _selectedTiles[1].GridY;
-            // Ýkinci Seçilen Tile koord Saklýyoruz
+            SwapTilesInGrid();
 
-            Tile tempTile = _tiles[tile1X,tile1Y];
-            _tiles[tile1X,tile1Y] = _tiles[tile2X,tile2Y];
-            _tiles[tile2X,tile2Y] = tempTile;
-            // _tiles Arrayda ki Tilelarýn yerini deðiþtirdik
+            DOTween.Sequence()
+           .Join(_selectedTiles[0].transform.DOMove(secondPos, _swapDuration).SetEase(swapEase))
+           .Join(_selectedTiles[1].transform.DOMove(firstPos, _swapDuration).SetEase(swapEase))
+           .OnComplete(() => CheckMatchAndHandle(firstPos, secondPos));
 
-            //// Tilerlarýn grid Koord güncelliyoruz
-            _selectedTiles[0].Initialize(tile2X, tile2Y, this);
-            _selectedTiles[1].Initialize(tile1X, tile1Y, this);
+        }
+    }
+    private void SwapTilesInGrid()
+    {
+        // ilk Seçilen Tile ýn koord saklýyoruz
 
-            PlaySwapAnim(_selectedTiles[0], _selectedTiles[1],tempTile.transform.position);
+        int tile1X = _selectedTiles[0].GridX;
+        int tile1Y = _selectedTiles[0].GridY;
+
+        // Ýkinci Seçilen Tile koord Saklýyoruz
+
+        int tile2X = _selectedTiles[1].GridX;
+        int tile2Y = _selectedTiles[1].GridY;
+
+
+        Tile tempTile = _tiles[tile1X, tile1Y];
+        _tiles[tile1X, tile1Y] = _tiles[tile2X, tile2Y];
+        _tiles[tile2X, tile2Y] = tempTile;
+        // _tiles Arrayda ki Tilelarýn yerini deðiþtirdik
+
+        //// Tilerlarýn grid Koord güncelliyoruz
+        _selectedTiles[0].Initialize(tile2X, tile2Y, this);
+        _selectedTiles[1].Initialize(tile1X, tile1Y, this);
+    }
+
+    private void CheckMatchAndHandle(Vector3 firstPos, Vector3 secondPos)
+    {
+        if (_checkMatch.FindTileMatches(_tiles, _gridX, _gridY).Count == 0)
+        {
+            // Eþleþme yoksa geri al
+            SwapTilesInGrid(); // Grid'i eski haline getir
+
+            // Pozisyonlarý geri al
+            DOTween.Sequence()
+                .Join(_selectedTiles[0].transform.DOShakePosition(0.2f, 0.1f))
+                .Join(_selectedTiles[1].transform.DOShakePosition(0.2f, 0.1f))
+                .Append(_selectedTiles[0].transform.DOMove(firstPos, _swapDuration))
+                .Join(_selectedTiles[1].transform.DOMove(secondPos, _swapDuration))
+                .OnComplete(() => {
+                    _isSwapping = false;
+                    DeSelectTile(_selectedTiles[0]);
+                    DeSelectTile(_selectedTiles[1]);
+                });
+        }
+        else
+        {
+            // Eþleþme varsa normal akýþa devam et
+            _isSwapping = false;
+            DeSelectTile(_selectedTiles[0]);
+            DeSelectTile(_selectedTiles[1]);
+            StartCoroutine(DestroyRoutine());
         }
     }
 
+
+ 
     private bool TileMoveCheck(Tile tile1, Tile tile2)
     {
         int xCheck = Mathf.Abs(tile1.GridX - tile2.GridX);
@@ -258,38 +300,9 @@ public class GameManager : MonoBehaviour
         // iki grid arasýnda x veya y de 1 birim uzaktaysa hareket ettir
     }
 
-    private void PlaySwapAnim(Tile firstTile, Tile secondTile, Vector3 targetPos)
-    {
-        // Baþlangýç pozisyonlarýný kaydet
-      
-
-        DG.Tweening.Sequence swapSequence = DOTween.Sequence();
-
-        // Ýlk tile animasyonu
-        swapSequence.Join(firstTile.transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f), _swapDuration * 0.5f));
-        swapSequence.Join(firstTile.transform.DOMove(secondTile.transform.position, _swapDuration).SetEase(swapEase));
-        swapSequence.Join(firstTile.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), _swapDuration * 0.5f).SetDelay(_swapDuration * 0.5f));
-
-        // Ýkinci tile animasyonu
-        swapSequence.Join(secondTile.transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f), _swapDuration * 0.5f));
-        swapSequence.Join(secondTile.transform.DOMove(targetPos, _swapDuration).SetEase(swapEase));
-        swapSequence.Join(secondTile.transform.DOScale(new Vector3(0.1f, 0.1f,0.1f), _swapDuration * 0.5f).SetDelay(_swapDuration * 0.5f));
-
-        // Animasyon tamamlandýðýnda çalýþacak
-        swapSequence.OnComplete(() =>
-        {
-            DeSelectTile(firstTile);
-            DeSelectTile(secondTile);
-            _isSwapping = false;
-            StartCoroutine(DestroyRoutine()); // isSwapping false dönüyor ve çalýþýyor
-
-        });
-
-    }
-
     public void SelectedTile(Tile tile)
     {
-        if (_isFalling)
+        if (_isFalling) // isFalling true ise hareket edemezler
         {
             Debug.Log("not move is falling");
             return;
