@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private Tile[,] _tiles;   // Tilelarý tutan 2D bir array
     private Tile[] _selectedTiles = new Tile[2];  // Seçilen Taþlarý Tutan bir array
     private bool _isSwapping = false;
+    private bool _isFalling = false;
     private GameObject[,] _bgTiles; // Tile BG leri tutan liste
     private CheckMatches _checkMatch;
 
@@ -32,7 +33,6 @@ public class GameManager : MonoBehaviour
         CameraFilterEvents.CameraEvents?.Invoke(_gridX, _gridY);
         GridUIEvents.GridEvents?.Invoke(_gridX, _gridY);
         _checkMatch =  GetComponent<CheckMatches>();
-        StartCoroutine(DestroyRoutine());
     }
 
 
@@ -59,6 +59,21 @@ public class GameManager : MonoBehaviour
         GridUIEvents.GridBorderEvents?.Invoke(_gridX, _gridY);
 
     }
+    private void CreateTileBackground()
+    {
+        _bgTiles = new GameObject[_gridX, _gridY]; // Gride göre bg leri tutacaz
+
+        for (int i = 0; i < _gridX; i++)
+        {
+            for (int j = 0; j < _gridY; j++)
+            {
+                Vector3 pos = new Vector3(transform.position.x + i, transform.position.y + j, 0);
+                GameObject bg = Instantiate(_tileBg, pos, Quaternion.identity);
+                bg.transform.SetParent(transform);
+                _bgTiles[i, j] = bg;
+            }
+        }
+    }
 
     private void HasAnyMatches()
     {
@@ -68,33 +83,103 @@ public class GameManager : MonoBehaviour
         {
             foreach (Tile tile in matchedTile)
             {
-                Destroy(tile.gameObject);
-                Debug.Log("destroy");
+                DestroyAnim(tile);
             }
+            StartCoroutine(RainDownRoutine());
         }
     }
+
+    private IEnumerator RainDownRoutine()
+    {
+        _isFalling = true;
+        yield return new WaitForSeconds(0.3f); // Yok olma animasyonunun bitmesini bekle
+
+        // Her sütun için kontrol
+        for (int x = 0; x < _gridX; x++) // Sütünlarý sayýyoruz
+        {
+            for (int y = 0; y < _gridY; y++)  // her sütünü kontrol 
+            {
+                if (_tiles[x, y] == null) // Boþ bir tile bulursak Gridde 
+                {
+                    for (int newY = y + 1; newY < _gridY; newY++) // grid7 den baþlýcak yukarý doðru kotnrol
+                    {
+                        Tile newMoveTile = _tiles[x, newY]; // yukarýda ki baktýðýmýz Tile
+                        if (newMoveTile != null)
+                        {
+                            // Tile'ý aþaðý taþý
+                            _tiles[x, newY] = null; // poz boþaltýyoruz
+                            _tiles[x, y] = newMoveTile; // Yeni poz boþalttýðýmýz yere atýyoruz
+                            newMoveTile.Initialize(x, y, this);
+
+                            // Düþme animasyonu
+                            Vector3 targetPos = new Vector3(x, y, 0);
+                            newMoveTile.transform.DOMove(targetPos, 0.3f).SetEase(Ease.OutBounce);
+
+                            break;
+                        }
+                    }
+
+                    // Eðer hala boþsa, yeni tile oluþtur
+                    if (_tiles[x, y] == null)
+                    {
+                        CreateNewTile(x, y);
+                    }
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(0.4f); // Tüm düþme animasyonlarýnýn bitmesini bekle
+        _isFalling = false;
+        StartCoroutine(DestroyRoutine()); // Yeni eþleþmeleri yok et
+    }
+    private void CreateNewTile(int x, int y)
+    {
+        // Yeni tile'ý üstten baþlatma pozisyonu
+        Vector3 startPos = new Vector3(x, _gridY + 1, 0);  // baþlangýç Poz yukarýdan düþmesi 1 yukarýs
+        Vector3 targetPos = new Vector3(x, y, 0); // hedef poz da boþalttýðýmýz yer
+
+        // Rastgele tile seç ve oluþtur
+        int randomIndex = Random.Range(0, _tileObject.Length);
+        GameObject newTileObj = Instantiate(_tileObject[randomIndex], startPos, Quaternion.identity);
+        newTileObj.transform.SetParent(transform);
+
+        Tile newTile = newTileObj.GetComponent<Tile>();
+        newTile.Initialize(x, y, this);
+        _tiles[x, y] = newTile;
+
+        // Düþme animasyonu
+        newTileObj.transform.DOMove(targetPos, 0.3f).SetEase(Ease.OutBounce);
+    }
+
+
+
+    private void DestroyAnim(Tile tile)
+    {
+        tile.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.Flash);
+        tile.GetComponent<SpriteRenderer>().DOFade(0.2f,0.2f).SetEase(Ease.Flash)
+            .OnComplete(() =>
+            {
+                Destroy(tile);
+            });
+    }
+
     IEnumerator DestroyRoutine()
     {
         if (_isSwapping)
         {
-        yield return new WaitForSeconds(1f);
+            yield return null;
         }
-          HasAnyMatches();
+        yield return new WaitForSeconds(0.1f);
+        HasAnyMatches();
+
     }
 
-    private void Update()
-    {
-        if (_isSwapping)
-        {
-            HasAnyMatches();
-        }
-    }
     private int HasMatchStart(int x, int y)
     {
         int leftTileId;
         if (x > 0)
         {
-            leftTileId = _tiles[x -1,y].TileID;
+            leftTileId = _tiles[x - 1,y].TileID;
         }
         else
         {
@@ -114,63 +199,19 @@ public class GameManager : MonoBehaviour
         return randomIndex;
     }
 
-    private void CreateTileBackground()
-    {
-        _bgTiles = new GameObject[_gridX, _gridY]; // Gride göre bg leri tutacaz
-
-        for (int i = 0; i < _gridX; i++)
-        {
-            for (int j = 0; j < _gridY; j++)
-            {
-                Vector3 pos = new Vector3(transform.position.x + i, transform.position.y + j, 0);
-                GameObject bg = Instantiate(_tileBg, pos, Quaternion.identity);
-                bg.transform.SetParent(transform);
-                _bgTiles[i, j] = bg;
-            }
-        }
-    }
-
-    public void SelectedTile(Tile tile)
-    {
-        if (_selectedTiles[0] == tile)
-        {
-            DeSelectTile(tile);
-        }
-        else if (_selectedTiles[1] == tile)
-        {
-            DeSelectTile(tile);
-
-        }
-        //Seçim varsa temizliyor
-        else
-        {
-            if (_selectedTiles[0] == null)
-            {
-                _selectedTiles[0] = tile;
-                GameEvent.SelectsTile?.Invoke(tile);
-
-            }
-            else if(_selectedTiles[1] == null)
-            {
-                _selectedTiles[1] = tile;
-                 GameEvent.SelectsTile?.Invoke(tile);
-                 Debug.Log("2 Tile seçildi");
-                 SwapTiles();               
-            }
-        }
-        // yoksa ve boþsa Tile olarak tanýmlýyor seçim ekliyor
-    }
-
-    private void OnEnable()=>RegisterEvents();
-    private void OnDisable()=> UnRegisterEvents();
-
-    private void RegisterEvents() => GameEvent.OnClickEvents += SelectedTile;
-    private void UnRegisterEvents() => GameEvent.OnClickEvents -= SelectedTile;
-    // Mouse Sol Týk Eventi.
-
+ 
 
     private void SwapTiles()
     {
+
+        if (_isFalling)
+        {
+
+            DeSelectTile(_selectedTiles[0]);  //isFalling True olunca seçimleri sýfýrla
+            DeSelectTile(_selectedTiles[1]);
+            return;
+        }
+
         if (_selectedTiles[0]!=null && _selectedTiles[1] != null)
         {
 
@@ -240,10 +281,49 @@ public class GameManager : MonoBehaviour
             DeSelectTile(firstTile);
             DeSelectTile(secondTile);
             _isSwapping = false;
+            StartCoroutine(DestroyRoutine()); // isSwapping false dönüyor ve çalýþýyor
+
         });
+
     }
 
+    public void SelectedTile(Tile tile)
+    {
+        if (_isFalling)
+        {
+            Debug.Log("not move is falling");
+            return;
+            
+        }
 
+        if (_selectedTiles[0] == tile)
+        {
+            DeSelectTile(tile);
+        }
+        else if (_selectedTiles[1] == tile)
+        {
+            DeSelectTile(tile);
+
+        }
+        //Seçim varsa temizliyor
+        else
+        {
+            if (_selectedTiles[0] == null)
+            {
+                _selectedTiles[0] = tile;
+                GameEvent.SelectsTile?.Invoke(tile);
+
+            }
+            else if (_selectedTiles[1] == null)
+            {
+                _selectedTiles[1] = tile;
+                GameEvent.SelectsTile?.Invoke(tile);
+                Debug.Log("2 Tile seçildi");
+                SwapTiles();
+            }
+        }
+        // yoksa ve boþsa Tile olarak tanýmlýyor seçim ekliyor
+    }
 
     public void DeSelectTile(Tile tile)
     {
@@ -263,6 +343,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+
+    private void OnEnable() => RegisterEvents();
+    private void OnDisable() => UnRegisterEvents();
+
+    private void RegisterEvents() => GameEvent.OnClickEvents += SelectedTile;
+    private void UnRegisterEvents() => GameEvent.OnClickEvents -= SelectedTile;
+    // Mouse Sol Týk Eventi.
+
 
 #if UNITY_EDITOR_64
     private void OnDrawGizmos()

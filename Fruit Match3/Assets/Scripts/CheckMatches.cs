@@ -28,7 +28,7 @@ public class CheckMatches : MonoBehaviour
                         matchTile.Add(firstMatch);
                         matchTile.Add(secondMatch);
                         matchTile.Add(thirdMatch);
-                        Debug.Log("MATCH");
+                        Debug.Log("MATCH HORİZONTAL");
                     }
                 }
             } 
@@ -51,7 +51,7 @@ public class CheckMatches : MonoBehaviour
                         matchTile.Add(firstMatchY);
                         matchTile.Add(secondMatchY);
                         matchTile.Add(thirdMatchY);
-                        Debug.Log("MATCH");
+                        Debug.Log("MATCH VERTİCAL");
 
                     }
                 }
