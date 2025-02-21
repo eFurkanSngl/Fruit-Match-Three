@@ -45,7 +45,7 @@ public class GridBorder : MonoBehaviour
             //startX -1 gridin bir birim soluna , startY gridY kadar yerleþtir
 
             // Sað border'ýn X'si gridX pozisyonunda olacak
-            _borderObjects.Add(Instantiate(_borderRight, new Vector3(startX + gridX - 0.85f, startY + i, 0), Quaternion.identity, transform));
+            _borderObjects.Add(Instantiate(_borderRight, new Vector3(startX + gridX - 0.88f, startY + i, 0), Quaternion.identity, transform));
             //gridX startX den büyük o yüzden
         }
         Debug.Log("baþlangýç poz" + startX);

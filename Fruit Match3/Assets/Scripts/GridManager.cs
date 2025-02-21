@@ -30,8 +30,6 @@ public class GameManager : MonoBehaviour
         CreateGrid();
         CreateTileBackground();
         DOTween.SetTweensCapacity(500, 50);
-        CameraFilterEvents.CameraEvents?.Invoke(_gridX, _gridY);
-        GridUIEvents.GridEvents?.Invoke(_gridX, _gridY);
         _checkMatch =  GetComponent<CheckMatches>();
     }
 
@@ -57,11 +55,12 @@ public class GameManager : MonoBehaviour
             }
         }
         GridUIEvents.GridBorderEvents?.Invoke(_gridX, _gridY);
-
+        GridUIEvents.GridEvents?.Invoke(_gridX, _gridY);
+        CameraFilterEvents.CameraEvents?.Invoke(_gridX, _gridY);
     }
     private void CreateTileBackground()
     {
-        _bgTiles = new GameObject[_gridX, _gridY]; // Gride göre bg leri tutacaz
+        _bgTiles = new GameObject[_gridX,_gridY]; // Gride göre bg leri tutacaz
 
         for (int i = 0; i < _gridX; i++)
         {
@@ -75,19 +74,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void HasAnyMatches()
-    {
-        List<Tile> matchedTile = _checkMatch.FindTileMatches(_tiles, _gridX, _gridY);
-
-        if(matchedTile.Count>0)
-        {
-            foreach (Tile tile in matchedTile)
-            {
-                DestroyAnim(tile);
-            }
-            StartCoroutine(RainDownRoutine());
-        }
-    }
+   
 
     private IEnumerator RainDownRoutine()
     {
@@ -113,7 +100,7 @@ public class GameManager : MonoBehaviour
 
                             // Düþme animasyonu
                             Vector3 targetPos = new Vector3(x, y, 0);
-                            newMoveTile.transform.DOMove(targetPos, 0.3f).SetEase(Ease.OutBounce);
+                            newMoveTile.transform.DOMove(targetPos, 0.3f).SetEase(Ease.OutBounce);//OutBounce
 
                             break;
                         }
@@ -151,16 +138,18 @@ public class GameManager : MonoBehaviour
         newTileObj.transform.DOMove(targetPos, 0.3f).SetEase(Ease.OutBounce);
     }
 
-
-
-    private void DestroyAnim(Tile tile)
+    private void HasAnyMatches()
     {
-        tile.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.Flash);
-        tile.GetComponent<SpriteRenderer>().DOFade(0.2f,0.2f).SetEase(Ease.Flash)
-            .OnComplete(() =>
+        List<Tile> matchedTile = _checkMatch.FindTileMatches(_tiles, _gridX, _gridY);
+
+        if (matchedTile.Count > 0)
+        {
+            foreach (Tile tile in matchedTile)
             {
-                Destroy(tile);
-            });
+                DestroyAnim(tile);
+            }
+            StartCoroutine(RainDownRoutine());
+        }
     }
 
     IEnumerator DestroyRoutine()
@@ -174,6 +163,15 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void DestroyAnim(Tile tile)
+    {
+        tile.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.Flash);
+        tile.GetComponent<SpriteRenderer>().DOFade(0.2f, 0.2f).SetEase(Ease.Flash)
+            .OnComplete(() =>
+            {
+                Destroy(tile);
+            });
+    }
     private int HasMatchStart(int x, int y)
     {
         int leftTileId;
