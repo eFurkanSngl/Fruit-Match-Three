@@ -14,7 +14,7 @@ public class CamereController : MonoBehaviour
     }
     private void SizeFilterCam(int gridWidth , int gridHeight)
     {
-        float centerX = gridWidth / 2.2f;
+        float centerX = gridWidth / 2.3f;
         float centerY = gridHeight / 2.5f;
 
         _camera.transform.position = new Vector3(centerX, centerY, -10);

@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         }
         GridUIEvents.GridBorderEvents?.Invoke(_gridX, _gridY);
         GridUIEvents.GridEvents?.Invoke(_gridX, _gridY);
-        CameraFilterEvents.CameraEvents?.Invoke(_gridX, _gridY);
+        CameraFilterEvents.CameraEvents?.Invoke(_gridX,_gridY);
     }
     private void CreateTileBackground()
     {

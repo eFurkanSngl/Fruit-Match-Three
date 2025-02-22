@@ -30,7 +30,7 @@ public class GridBorder : MonoBehaviour
         for (int i = 0; i < gridX; i++)  // Grid Boyutu kadar Obje yaratýr
         {
             // Top border'ýn Y'si gridY pozisyonunda olacak
-            _borderObjects.Add(Instantiate(_borderTop, new Vector3(startX + i, startY + (gridY - 0.89f), 0), Quaternion.identity, transform));
+            _borderObjects.Add(Instantiate(_borderTop, new Vector3(startX + i, startY + (gridY - 0.87f), 0), Quaternion.identity, transform));
                     //gridY - 0.80 yapma sebebim gridin dýþýnda o kadar olmasý içþn
 
             // Alt border'ýn Y'si -1 pozisyonunda olacak
@@ -41,11 +41,11 @@ public class GridBorder : MonoBehaviour
         for (int i = 0; i < gridY; i++) //gridin boyutu kadar yine ekliyor
         {
             // Sol border'ýn X'si -1 pozisyonunda olacak
-            _borderObjects.Add(Instantiate(_borderLeft, new Vector3(startX - 1, startY + i, 0), Quaternion.identity, transform));
+            _borderObjects.Add(Instantiate(_borderLeft, new Vector3(startX - 0.99f, startY + i, 0), Quaternion.identity, transform));
             //startX -1 gridin bir birim soluna , startY gridY kadar yerleþtir
 
             // Sað border'ýn X'si gridX pozisyonunda olacak
-            _borderObjects.Add(Instantiate(_borderRight, new Vector3(startX + gridX - 0.88f, startY + i, 0), Quaternion.identity, transform));
+            _borderObjects.Add(Instantiate(_borderRight, new Vector3(startX + gridX - 0.87f, startY + i, 0), Quaternion.identity, transform));
             //gridX startX den büyük o yüzden
         }
         Debug.Log("baþlangýç poz" + startX);
