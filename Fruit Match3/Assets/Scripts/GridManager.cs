@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     private bool _isFalling = false;
     private GameObject[,] _bgTiles; // Tile BG leri tutan liste
     private CheckMatches _checkMatch;
+    private bool _isShowHint = false;
+    private Coroutine _hintCoroutine;
 
     private void Start()
     {
@@ -31,6 +33,53 @@ public class GameManager : MonoBehaviour
         CreateTileBackground();
         DOTween.SetTweensCapacity(500, 50);
         _checkMatch =  GetComponent<CheckMatches>();
+        StartHintCoroutine();
+    }
+
+    private void StartHintCoroutine()
+    {
+        if(_hintCoroutine != null)
+        {
+            StopCoroutine(_hintCoroutine);
+        }
+        _hintCoroutine = StartCoroutine(HintRoutine());
+    }
+
+    private IEnumerator HintRoutine()
+    {
+        _isShowHint = false;
+        float timer = 0f;
+        while (timer < 3f)
+        {
+            if (_isFalling)
+            {
+                timer = 0f;
+            }
+            else
+            {
+                timer += Time.deltaTime;
+            }
+            yield return null;
+        }
+        _isShowHint = true;
+        ShowHint();
+    }
+
+    private void ShowHint()
+    {
+        if(_isShowHint && !_isFalling)
+        {
+            Tile hintTile = _checkMatch.FindHint(_tiles,_gridX, _gridY);
+            if(hintTile != null )
+            {
+                hintTile.transform.DOShakePosition(0.5f, 0.3f);
+                Debug.Log("Show Hint");
+            }
+            else
+            {
+                Debug.Log("Not can show hint");
+            }
+        }
     }
 
 
@@ -74,11 +123,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-   
-
     private IEnumerator RainDownRoutine()
     {
         _isFalling = true;
+        StartHintCoroutine();
         yield return new WaitForSeconds(0.3f); // Yok olma animasyonunun bitmesini bekle
 
         // Her sütun için kontrol
@@ -118,6 +166,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.4f); // Tüm düþme animasyonlarýnýn bitmesini bekle
         _isFalling = false;
         StartCoroutine(DestroyRoutine()); // Yeni eþleþmeleri yok et
+        StartHintCoroutine();
     }
     private void CreateNewTile(int x, int y)
     {
