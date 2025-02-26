@@ -1,0 +1,571 @@
+fileFormatVersion: 2
+guid: 4f9c85fed910c564fb61d429ee6be576
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 423
+        width: 134
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3ae35e1e3cc2d4418e0ec615162c451
+      internalID: -1445101879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 406
+        width: 96
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c404642d52cfc64d94a6649d87651d6
+      internalID: -1567810468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_2
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 408
+        width: 136
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090a742455661ba4386809d71fed0af7
+      internalID: -1666943317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_3
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 428
+        width: 143
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 643d44b97781061419fa6b860f1d4ddb
+      internalID: 1173929172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_4
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 413
+        width: 117
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a2d9c026fcda1a4ca356d1e80de6d3d
+      internalID: -1932029366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_5
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 409
+        width: 123
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f32df005ad8130645a1ebbfaaa549b39
+      internalID: -883359718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_6
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 211
+        width: 128
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f361550ffc2e8442b6572d62057ef5f
+      internalID: -573835044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_7
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 214
+        width: 136
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe30a36034aa40f439aa6d2b0afc3f47
+      internalID: -555860105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_8
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 215
+        width: 120
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e035420c2e2e148479101e0cdf700829
+      internalID: 2067188682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_9
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 224
+        width: 123
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1b9f18e5012eaf4da1a606e4d5f2e70
+      internalID: -813223466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_10
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 214
+        width: 40
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba593bc105479194a84b00df13c4e95b
+      internalID: 342400404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_11
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 17
+        width: 134
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f13ec4289461a5b428c3edcd4c7bee8c
+      internalID: -334398700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_12
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 32
+        width: 136
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 634507ba48b49794e9696891c44285e2
+      internalID: -1166001616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_13
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 24
+        width: 86
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d17fe4361f408a45bb17b6e8bb51c89
+      internalID: -1923729025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_14
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 25
+        width: 140
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f41448847fa16604c9c990be2cbb17bb
+      internalID: 1958859226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_15
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 31
+        width: 119
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8495e3512174bc84cbe935f6f7d45ac8
+      internalID: -770303735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_16
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 27
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59208b30ced12b64391d0487639849f9
+      internalID: -977267852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_17
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 20
+        width: 36
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81896245c020ea24198f9e4269febabc
+      internalID: -633069913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_18
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 21
+        width: 10
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ef3287d3a31b554887d2b118b3b5b59
+      internalID: -1218725117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 8058382fb470f474d9f27ccc3062a6e7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_0: -1445101879
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_1: -1567810468
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_10: 342400404
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_11: -334398700
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_12: -1166001616
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_13: -1923729025
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_14: 1958859226
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_15: -770303735
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_16: -977267852
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_17: -633069913
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_18: -1218725117
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_2: -1666943317
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_3: 1173929172
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_4: -1932029366
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_5: -883359718
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_6: -573835044
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_7: -555860105
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_8: 2067188682
+      close-up-bunch-different-fruits-vegetables-generative-ai_1035763-1253_9: -813223466
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
