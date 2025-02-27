@@ -14,5 +14,7 @@ public class ExitBTN : UIBTN
     {
         _closePanel.SetActive(false);
         UIBtnEvents.SettingsUIEvents?.Invoke();
+        Time.timeScale = 1.0f;
+        Debug.Log("Time is started");
     }
 }

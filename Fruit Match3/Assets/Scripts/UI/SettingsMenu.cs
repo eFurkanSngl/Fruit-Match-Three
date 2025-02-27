@@ -17,6 +17,9 @@ public class SettingsMenu : UIBTN
     {
         _settingsMenu.SetActive(true);
         SettingsPanelIntro();
+        Time.timeScale = 0f;
+        Debug.Log("Time is stopped");
+
     }
     protected override void OnClick()
     {
@@ -45,4 +48,6 @@ public class SettingsMenu : UIBTN
     {
         UIBtnEvents.SettingsUIEvents -= SettingsPanelOutro;
     }
+
+ 
 }

@@ -81,7 +81,7 @@ public class CheckMatches : MonoBehaviour
 
                     if (matchedTiles.Count > 0)
                     {
-                        return matchedTiles.FirstOrDefault(); // İlk eşleşen taşı döndür
+                        return tiles[x + 1, y]; // Değişim yapılan taşı döndür (3. taş)
                     }
                 }
 
@@ -94,14 +94,13 @@ public class CheckMatches : MonoBehaviour
 
                     if (matchedTiles.Count > 0)
                     {
-                        return matchedTiles.FirstOrDefault(); // İlk eşleşen taşı döndür
+                        return tiles[x, y + 1]; // Değişim yapılan taşı döndür (3. taş)
                     }
                 }
             }
-           
         }
 
-        return null; // Eğer uygun bir hamle yoksa, null döndür
+        return null; // Hiçbir eşleşme bulunamazsa null döndür
     }
     private void SwapTiles(Tile[,] tiles, int x1, int y1, int x2, int y2)
     {

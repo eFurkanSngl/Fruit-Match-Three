@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] _tileObject;   // Prefab
     [SerializeField] private GameObject _tileBg;  // Tile bg
     [SerializeField] private float _swapDuration = 3f;  // anim süre
-    [SerializeField] private Ease swapEase = Ease.InOutBack; // anim tipi
+    [SerializeField] private Ease swapEase = Ease.OutQuad; // anim tipi
     
 
     private Tile[,] _tiles;   // Tilelarý tutan 2D bir array
@@ -36,9 +36,10 @@ public class GameManager : MonoBehaviour
         StartHintCoroutine();
     }
 
+
     private void StartHintCoroutine()
     {
-        if(_hintCoroutine != null)
+        if (_hintCoroutine != null)
         {
             StopCoroutine(_hintCoroutine);
         }
@@ -67,10 +68,10 @@ public class GameManager : MonoBehaviour
 
     private void ShowHint()
     {
-        if(_isShowHint && !_isFalling)
+        if (_isShowHint && !_isFalling)
         {
-            Tile hintTile = _checkMatch.FindHint(_tiles,_gridX, _gridY);
-            if(hintTile != null )
+            Tile hintTile = _checkMatch.FindHint(_tiles, _gridX, _gridY);
+            if (hintTile != null)
             {
                 hintTile.transform.DOShakePosition(0.5f, 0.3f);
                 Debug.Log("Show Hint");
@@ -126,7 +127,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator RainDownRoutine()
     {
         _isFalling = true;
-        StartHintCoroutine();
         yield return new WaitForSeconds(0.3f); // Yok olma animasyonunun bitmesini bekle
 
         // Her sütun için kontrol
@@ -406,7 +406,10 @@ public class GameManager : MonoBehaviour
 
 
     private void OnEnable() => RegisterEvents();
-    private void OnDisable() => UnRegisterEvents();
+    private void OnDisable()
+    {
+        UnRegisterEvents();
+    }
 
     private void RegisterEvents() => GameEvent.OnClickEvents += SelectedTile;
     private void UnRegisterEvents() => GameEvent.OnClickEvents -= SelectedTile;

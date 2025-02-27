@@ -1,0 +1,13 @@
+Font: Seven Moon  Style: Regular
+Point Size: 1379   SP/PD Ratio: 0,7%
+
+Characters included: 8/9
+Missing characters: 1
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+ID: 8230	Hex: 2026	Char […]
+
+Characters excluded from packing:
+----------------------------------------
