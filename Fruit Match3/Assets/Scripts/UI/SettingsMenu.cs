@@ -28,7 +28,7 @@ public class SettingsMenu : UIBTN
 
     private void SettingsPanelIntro()
     {
-        _settingsBtnTransform.DOAnchorPosX(152, _tweenDuration).SetUpdate(true);
+        _settingsBtnTransform.DOAnchorPosX(1000, _tweenDuration).SetUpdate(true);
         _canvasGroup.DOFade(1, _tweenDuration).SetUpdate(true);
         _settingsTransform.DOAnchorPosY(_middlePosY, _tweenDuration).SetUpdate(true);
     }
@@ -36,7 +36,7 @@ public class SettingsMenu : UIBTN
     private void SettingsPanelOutro()
     {
         _canvasGroup.DOFade(0,_tweenDuration).SetUpdate(true);
-        _settingsBtnTransform.DOAnchorPosX(-197,_tweenDuration).SetUpdate(true);
+        _settingsBtnTransform.DOAnchorPosX(720,_tweenDuration).SetUpdate(true);
        _settingsTransform.DOAnchorPosY(_topPosY, _tweenDuration).SetUpdate(true);
     }
 

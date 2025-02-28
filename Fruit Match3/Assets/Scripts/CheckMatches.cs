@@ -29,7 +29,7 @@ public class CheckMatches : MonoBehaviour
                         matchTile.Add(secondMatch);
                         matchTile.Add(thirdMatch);
                         Debug.Log("MATCH HORİZONTAL");
-                        Debug.Log($"Checking ({j}, {i}), ({j + 1}, {i}), ({j + 2}, {i})"); // Yatay Kontrol
+                        Debug.Log($"MATCH FOUND (HORIZONTAL) at ({i},{j}), ({i + 1},{j}), ({i + 2},{j})");
                     }
                 }
             } 
@@ -53,6 +53,9 @@ public class CheckMatches : MonoBehaviour
                         matchTile.Add(firstMatchY);
                         matchTile.Add(secondMatchY);
                         matchTile.Add(thirdMatchY);
+
+                        Debug.Log($"MATCH FOUND (VERTICAL) at ({x},{y}), ({x},{y + 1}), ({x},{y + 2})");
+
                     }
                 }
             }
@@ -75,26 +78,36 @@ public class CheckMatches : MonoBehaviour
                 // Sağa değişim kontrolü (Swap Right)
                 if (x < gridX - 1)
                 {
+                    Tile swappedTile = tiles[x + 1, y]; // Diğer taş
                     SwapTiles(tiles, x, y, x + 1, y);
                     var matchedTiles = FindTileMatches(tiles, gridX, gridY);
                     SwapTiles(tiles, x, y, x + 1, y); // Swap'ı geri al
 
-                    if (matchedTiles.Count > 0)
+                    if (matchedTiles.Contains(swappedTile)) // Eğer eşleşme içinde bu taş varsa
                     {
-                        return tiles[x + 1, y]; // Değişim yapılan taşı döndür (3. taş)
+                        return swappedTile; // Eşleşmeyi tamamlayan taş
+                    }
+                    if (matchedTiles.Contains(currentTile)) // Eğer kendi taşı eşleşmeyi tamamlıyorsa
+                    {
+                        return currentTile;
                     }
                 }
 
                 // Aşağı değişim kontrolü (Swap Down)
                 if (y < gridY - 1)
                 {
+                    Tile swappedTile = tiles[x, y + 1];
                     SwapTiles(tiles, x, y, x, y + 1);
                     var matchedTiles = FindTileMatches(tiles, gridX, gridY);
                     SwapTiles(tiles, x, y, x, y + 1); // Swap'ı geri al
 
-                    if (matchedTiles.Count > 0)
+                    if (matchedTiles.Contains(swappedTile))
                     {
-                        return tiles[x, y + 1]; // Değişim yapılan taşı döndür (3. taş)
+                        return swappedTile;
+                    }
+                    if (matchedTiles.Contains(currentTile))
+                    {
+                        return currentTile;
                     }
                 }
             }
@@ -109,16 +122,16 @@ public class CheckMatches : MonoBehaviour
         tiles[x2, y2] = temp;
     }
 
-    private bool HintMatch(Tile[,] tiles, int x1 ,int x2, int y1,int y2, int gridX, int gridY)
-    {
-         Tile newTile = tiles[x1,y1];
-        tiles[x1,y1] = tiles[x2,y2];
-        tiles[x2,y2] = newTile;
-        bool matchFound = FindTileMatches(tiles, gridX, gridY).Count > 0;
+    //private bool HintMatch(Tile[,] tiles, int x1 ,int x2, int y1,int y2, int gridX, int gridY)
+    //{
+    //     Tile newTile = tiles[x1,y1];
+    //    tiles[x1,y1] = tiles[x2,y2];
+    //    tiles[x2,y2] = newTile;
+    //    bool matchFound = FindTileMatches(tiles, gridX, gridY).Count > 0;
 
-        tiles[x2 ,y2] = tiles[x1,y1];
-        tiles[x1,y1] = newTile; 
+    //    tiles[x2 ,y2] = tiles[x1,y1];
+    //    tiles[x1,y1] = newTile; 
         
-        return matchFound;
-    }
+    //    return matchFound;
+    //}
 }
