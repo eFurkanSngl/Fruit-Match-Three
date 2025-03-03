@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using DG.Tweening;
 
-public class GameManager : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
     [Header("Grid Settings")]
     [SerializeField] private int _gridX;
@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     private CheckMatches _checkMatch;
     private bool _isShowHint = false;
     private Coroutine _hintCoroutine;
+    
+    [Header("UI Settings")]
+    [SerializeField] private AudioSource _destroySound;
+    [SerializeField] private GameObject _destoryEffect;
 
     private void Start()
     {
@@ -187,7 +191,7 @@ public class GameManager : MonoBehaviour
         newTileObj.transform.DOMove(targetPos, 0.3f).SetEase(Ease.OutBounce);
     }
 
-    private void HasAnyMatches()
+    private void HasAnyMatches() // Eþleþme var ise yok etme 
     {
         List<Tile> matchedTile = _checkMatch.FindTileMatches(_tiles, _gridX, _gridY);
 
@@ -196,8 +200,17 @@ public class GameManager : MonoBehaviour
             foreach (Tile tile in matchedTile)
             {
                 DestroyAnim(tile);
+               TileDestroySound();
             }
             StartCoroutine(RainDownRoutine());
+        }
+    }
+    private void TileDestroySound()
+    {
+        if(_destroySound != null)
+        {
+            _destroySound.Play();
+            Debug.Log("Music On Play");
         }
     }
 
@@ -214,11 +227,25 @@ public class GameManager : MonoBehaviour
 
     private void DestroyAnim(Tile tile)
     {
+        if(_destoryEffect != null)
+        {
+            GameObject effect = Instantiate(_destoryEffect,tile.transform.position,Quaternion.identity);
+            
+            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+
+            if(ps!= null)
+            {
+                ps.Play();
+            }
+            Destroy(effect, 0.8f);
+
+        }
+
         tile.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.Flash);
         tile.GetComponent<SpriteRenderer>().DOFade(0.2f, 0.2f).SetEase(Ease.Flash)
             .OnComplete(() =>
             {
-                Destroy(tile);
+                Destroy(tile.gameObject);
             });
     }
     private int HasMatchStart(int x, int y)
@@ -250,7 +277,7 @@ public class GameManager : MonoBehaviour
 
     private void SwapTiles()
     {
-        if (_isFalling)
+        if (_isFalling || _isSwapping)
         {
             DeSelectTile(_selectedTiles[0]);  //isFalling True olunca seçimleri sýfýrla
             DeSelectTile(_selectedTiles[1]);

@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Rendering;
 using DG.Tweening;
-using UnityEngine.Events;
-using System;
 using UnityEngine.SceneManagement;
+using UnityEngine;
+
 
 public class LogoAnimation : MonoBehaviour
 {
     private Tween _logoTween;
     private bool _isFirstScene = false;
-
     private void Start()
     {
         StartLogoAnimation();
@@ -26,7 +21,7 @@ public class LogoAnimation : MonoBehaviour
     }
     private void StopLogoAnimation()
     {
-      if(_logoTween != null)
+        if (_logoTween != null)
         {
             _logoTween.Kill();
         }
@@ -34,7 +29,7 @@ public class LogoAnimation : MonoBehaviour
         Debug.Log("Destroy Logo");
     }
 
-    private void OnActiveSceneChanged(Scene scene,Scene next)
+    private void OnActiveSceneChanged(Scene scene, Scene next)
     {
         if (_isFirstScene)
         {
@@ -52,6 +47,4 @@ public class LogoAnimation : MonoBehaviour
         SceneManager.activeSceneChanged -= OnActiveSceneChanged;
         StopLogoAnimation();
     }
-
-
 }
