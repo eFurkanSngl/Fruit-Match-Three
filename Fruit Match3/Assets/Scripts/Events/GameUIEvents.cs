@@ -7,5 +7,8 @@ using UnityEngine.Events;
 
 public static class GameUIEvents
 {
-    public static UnityAction GameUI; 
+    public static UnityAction GameUI;
+    public static UnityAction OnPause;
+    public static UnityAction OnResume;
+
 }

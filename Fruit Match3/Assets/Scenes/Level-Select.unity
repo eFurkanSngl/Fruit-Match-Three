@@ -1381,7 +1381,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -91.000015, y: -182}
+  m_AnchoredPosition: {x: -91, y: -181.99997}
   m_SizeDelta: {x: -1852.59, y: -3362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1758087417
@@ -1694,7 +1694,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1883378733}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1554017033}
+        m_TargetAssemblyTypeName: LevelSelects, Assembly-CSharp
+        m_MethodName: OpenLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1883378733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1769,7 +1781,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.5}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -131.00002, y: -1450}
+  m_AnchoredPosition: {x: -131, y: -1450}
   m_SizeDelta: {x: -1852.59, y: -3362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2009294073

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverPanel;
     private bool _stopTimer= false;
     private WaitForSeconds _timer = new WaitForSeconds(1f);
+
+    private bool _isPaused = false;  // oyun durmadý
     private bool _isWarning = false;
 
     private void Start()
@@ -21,7 +23,7 @@ public class GameManager : MonoBehaviour
         _timeSlider.maxValue = _sliderTime;  // maks sliderTime kadar ol
         _timeSlider.value = _sliderTime; // Deðer de yine SliderTime dan alýyor
         StartTimeText();
-        StartCoroutine(StartTime());
+        StartCoroutine(DelayStart());
     }
 
     private void StartTimeText()
@@ -36,12 +38,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(StartTime());
+    }
     IEnumerator StartTime()
     {
         while (!_stopTimer)
         {
-            yield return new WaitForSeconds(1f);
+            if (_isPaused)  // burada false deðer döner devam eder oyun
+            {
+                yield return null;
+                continue;
+            }
+
             _sliderTime--;
             _timeSlider.value = _sliderTime;
             _timeText.text = Mathf.CeilToInt(_sliderTime).ToString();
@@ -89,6 +100,17 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartTime());
     }
 
+    private void OnPause()
+    {
+        _isPaused = true;  // oyun duraklatýldý.
+        Time.timeScale = 0f;
+    }
+    private void OnResume()
+    {
+        _isPaused = false;
+        Time.timeScale = 1f;
+    }
+
     private void OnEnable()
     {
         RegisterEvents();
@@ -101,11 +123,15 @@ public class GameManager : MonoBehaviour
     }
     private void RegisterEvents()
     {
+        GameUIEvents.OnPause += OnPause;
+        GameUIEvents.OnResume += OnResume;
         GameUIEvents.GameUI += RestartGame;
     }
 
     private void UnRegisterEvents()
     {
         GameUIEvents.GameUI -= RestartGame;
+        GameUIEvents.OnPause -= OnPause;
+        GameUIEvents.OnResume -= OnResume;
     }
 }

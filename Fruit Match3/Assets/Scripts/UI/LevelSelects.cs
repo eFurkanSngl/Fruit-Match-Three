@@ -8,6 +8,7 @@ public class LevelSelects : MonoBehaviour
 {
     [SerializeField] private Button[] _levelSelectsButton;
 
+
     private void Awake()
     {
         int UnLockedLevel = PlayerPrefs.GetInt("UnLockedLevel", 4);
@@ -20,10 +21,11 @@ public class LevelSelects : MonoBehaviour
         {
             _levelSelectsButton[i].interactable = true;
         }
+
     }
     public void OpenLevel(int levelId)
     {
-        string levelName = "level-" + levelId;
+        string levelName = "Level-" + levelId;
         SceneManager.LoadScene(levelName);
     }
 }

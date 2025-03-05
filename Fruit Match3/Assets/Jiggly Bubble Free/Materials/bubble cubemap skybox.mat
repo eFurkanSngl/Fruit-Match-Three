@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DLightPow: 1
+    - _DLightPow: 3.89
     - _Glow: 0.5
     m_Colors: []
   m_BuildTextureStacks: []

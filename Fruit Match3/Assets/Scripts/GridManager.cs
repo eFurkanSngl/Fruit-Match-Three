@@ -31,6 +31,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private AudioSource _destroySound;
     [SerializeField] private GameObject _destoryEffect;
 
+
     private void Start()
     {
         CreateGrid();
@@ -227,20 +228,18 @@ public class GridManager : MonoBehaviour
 
     private void DestroyAnim(Tile tile)
     {
-        if(_destoryEffect != null)
+        if (_destoryEffect != null)
         {
-            GameObject effect = Instantiate(_destoryEffect,tile.transform.position,Quaternion.identity);
-            
+            GameObject effect = Instantiate(_destoryEffect, tile.transform.position, Quaternion.identity);
             ParticleSystem ps = effect.GetComponent<ParticleSystem>();
-
-            if(ps!= null)
+            if (ps != null)
             {
                 ps.Play();
             }
-            Destroy(effect, 0.8f);
 
+            Destroy(effect, 1f);
         }
-
+     
         tile.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.Flash);
         tile.GetComponent<SpriteRenderer>().DOFade(0.2f, 0.2f).SetEase(Ease.Flash)
             .OnComplete(() =>

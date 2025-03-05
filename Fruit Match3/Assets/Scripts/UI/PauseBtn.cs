@@ -19,6 +19,7 @@ public class PauseBtn : UIBTN
         SettingsPanelIntro();
         //Time.timeScale = 0f;
         //Debug.Log("Time is stopped");
+        GameUIEvents.OnPause?.Invoke();
 
     }
     protected override void OnClick()

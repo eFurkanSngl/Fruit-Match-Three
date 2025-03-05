@@ -13,5 +13,6 @@ public class HomeBtn : UIBTN
     private void OnLoadScene()
     {
         SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1.0f;
     }
 }

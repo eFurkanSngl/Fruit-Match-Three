@@ -16,5 +16,6 @@ public class ExitBTN : UIBTN
         UIBtnEvents.SettingsUIEvents?.Invoke();
         //Time.timeScale = 1.0f;
         //Debug.Log("Time is started");
+        GameUIEvents.OnResume?.Invoke();
     }
 }
