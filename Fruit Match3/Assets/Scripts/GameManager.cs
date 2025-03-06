@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverPanel;
     private bool _stopTimer= false;
     private WaitForSeconds _timer = new WaitForSeconds(1f);
+    private Coroutine _coroutine;
 
     private bool _isPaused = false;  // oyun durmadý
     private bool _isWarning = false;
@@ -40,8 +41,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DelayStart()
     {
-        yield return new WaitForSeconds(1.5f);
-        StartCoroutine(StartTime());
+        yield return _timer;
+       _coroutine = StartCoroutine(StartTime());
     }
     IEnumerator StartTime()
     {
@@ -77,19 +78,22 @@ public class GameManager : MonoBehaviour
     private void TimeWarningEffect()
     {
         _timeText.color = Color.red;
-        _timeText.transform.DOShakePosition(1f, 10f, 10, 90, false, true).SetLoops(-1, LoopType.Restart);
+        _timeText.transform.DOShakePosition(1f, 10f, 10, 90, false, true).
+            SetLoops(-1, LoopType.Restart);
     }
     private void GameOver()
     {
         _gameOverPanel.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
+        StopAllCoroutines();
+
     }
 
     private void RestartGame()
     {
         Time.timeScale = 1f;
         _gameOverPanel.SetActive(false);
-        StopAllCoroutines();
+        StopAllCoroutines(); // eski olaný sýfýrlamak için durduruyoruz
         _timeText.text = _sliderTime.ToString();
         _sliderTime = 30f;
         _timeSlider.value = _sliderTime;
@@ -97,18 +101,27 @@ public class GameManager : MonoBehaviour
         _isWarning = false;
         _timeText.color = Color.white;
         _timeText.transform.DOKill();
-        StartCoroutine(StartTime());
+        StartCoroutine(DelayStart());
     }
 
     private void OnPause()
     {
         _isPaused = true;  // oyun duraklatýldý.
+        //if(_coroutine != null)
+        //{
+        //    StopCoroutine(_coroutine); // Coroutinler her zaman direkt Method referans ile durmaz o yüzden coroutineile durdurduk
+        //    _coroutine = null;
+        //}
         Time.timeScale = 0f;
     }
     private void OnResume()
     {
         _isPaused = false;
-        Time.timeScale = 1f;
+        //if(_coroutine == null)
+        //{
+        //    _coroutine = StartCoroutine(StartTime());
+        //}
+       Time.timeScale = 1f;
     }
 
     private void OnEnable()

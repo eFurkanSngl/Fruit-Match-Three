@@ -121,17 +121,4 @@ public class CheckMatches : MonoBehaviour
         tiles[x1, y1] = tiles[x2, y2];
         tiles[x2, y2] = temp;
     }
-
-    //private bool HintMatch(Tile[,] tiles, int x1 ,int x2, int y1,int y2, int gridX, int gridY)
-    //{
-    //     Tile newTile = tiles[x1,y1];
-    //    tiles[x1,y1] = tiles[x2,y2];
-    //    tiles[x2,y2] = newTile;
-    //    bool matchFound = FindTileMatches(tiles, gridX, gridY).Count > 0;
-
-    //    tiles[x2 ,y2] = tiles[x1,y1];
-    //    tiles[x1,y1] = newTile; 
-        
-    //    return matchFound;
-    //}
 }
