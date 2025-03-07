@@ -773,7 +773,7 @@ AudioSource:
   m_GameObject: {fileID: 649231921}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4078247756607408487, guid: 2ea5d12398f3b5240a6b728dc990cdb9, type: 2}
   m_audioClip: {fileID: 8300000, guid: 84216fadad75a5949961a01477052db2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1313,6 +1313,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 1215beee3bb2d244b917056dd82634e5, type: 3}
+    - target: {fileID: 4646168231415356841, guid: 077845e8d7dd3964baa24e772ee1e0bd, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 925232271568905794, guid: 2ea5d12398f3b5240a6b728dc990cdb9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1508,10 +1512,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4931862229389729030, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
-      propertyPath: _backgroundMusic
-      value: 
-      objectReference: {fileID: 649231922}
     - target: {fileID: 5467903135351278126, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1552,57 +1552,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5677446703786601333, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
+      propertyPath: _button
+      value: 
+      objectReference: {fileID: 8876954753236905629}
+    - target: {fileID: 5677446703786601333, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 649231922}
     - target: {fileID: 6632418990672401336, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
       propertyPath: m_Name
       value: PauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 6632418990672401336, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8272422883994711864, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
       propertyPath: _backgroundMusic
       value: 
       objectReference: {fileID: 649231922}
-    m_RemovedComponents:
-    - {fileID: 4931862229389729030, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1388929465076875714, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8876954753236905631}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
 --- !u!114 &8876954753236905629 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6741392769586355758, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
   m_PrefabInstance: {fileID: 8876954753236905628}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8876954753236905630}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8876954753236905630 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1388929465076875714, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
-  m_PrefabInstance: {fileID: 8876954753236905628}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8876954753236905631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8876954753236905630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b3a2a326b28cc49af576a8539009c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 8876954753236905629}
-  _backgroundMusic: {fileID: 649231922}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

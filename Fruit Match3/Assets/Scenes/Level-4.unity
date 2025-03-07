@@ -654,8 +654,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 8272422883994711864, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 1503348385}
     m_RemovedComponents:
     - {fileID: 4931862229389729030, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
+    - {fileID: 8739639645791270751, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -703,7 +708,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 470977160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b3a2a326b28cc49af576a8539009c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c9543fd06d104f48a12a553adf2373b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 470977159}
@@ -1234,7 +1239,7 @@ AudioSource:
   m_GameObject: {fileID: 1503348384}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4078247756607408487, guid: 2ea5d12398f3b5240a6b728dc990cdb9, type: 2}
   m_audioClip: {fileID: 8300000, guid: a7262b540b0755d419132c74780f059a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

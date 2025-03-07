@@ -1334,7 +1334,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 250, y: 121}
-  m_SizeDelta: {x: 154, y: 20}
+  m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564823947
 MonoBehaviour:
@@ -1386,7 +1386,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 981640414}
+        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+        m_MethodName: SetSfxVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &577138526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,7 +1461,7 @@ AudioSource:
   m_GameObject: {fileID: 577294414}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4078247756607408487, guid: 2ea5d12398f3b5240a6b728dc990cdb9, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0f48ac9909f33d7448cd489e7c03bc6b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1626,7 +1638,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 250, y: -302}
-  m_SizeDelta: {x: 154, y: 20}
+  m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782753636
 MonoBehaviour:
@@ -1672,13 +1684,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 488944706}
   m_HandleRect: {fileID: 1570629552}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 981640414}
+        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &855353795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,6 +1872,7 @@ GameObject:
   - component: {fileID: 981640411}
   - component: {fileID: 981640413}
   - component: {fileID: 981640412}
+  - component: {fileID: 981640414}
   m_Layer: 5
   m_Name: SettinsgScene
   m_TagString: Untagged
@@ -1917,6 +1942,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981640410}
   m_CullTransparentMesh: 1
+--- !u!114 &981640414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981640410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0049c93d3abb414a82ebeaa4afa0737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _myMixer: {fileID: 24100000, guid: 2ea5d12398f3b5240a6b728dc990cdb9, type: 2}
+  _musicSlider: {fileID: 782753636}
+  _sfxSlider: {fileID: 564823947}
 --- !u!1 &988499493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,8 +2275,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: -8}
-  m_SizeDelta: {x: 461.72, y: 147.2}
+  m_AnchoredPosition: {x: -20.203, y: -5.676}
+  m_SizeDelta: {x: 441.381, y: 143.325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1068167709
 MonoBehaviour:
@@ -2477,8 +2517,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -6}
-  m_SizeDelta: {x: 463.4, y: 126.6}
+  m_AnchoredPosition: {x: -14.809, y: -4.688}
+  m_SizeDelta: {x: 438.719, y: 124.413}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1234074116
 MonoBehaviour:
@@ -3046,7 +3086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -51.15, y: -16.599976}
+  m_AnchoredPosition: {x: -51.149902, y: -16.599854}
   m_SizeDelta: {x: 160, y: 150}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1576086245
