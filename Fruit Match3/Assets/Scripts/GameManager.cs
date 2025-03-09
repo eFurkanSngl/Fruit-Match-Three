@@ -12,9 +12,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _timeText;
     [SerializeField] private float _sliderTime = 30f;
     [SerializeField] private GameObject _gameOverPanel;
+    [SerializeField] private GameObject _nextLevelPanel;
+    [SerializeField] private TextMeshProUGUI _gameOverText;
+    [SerializeField] private TextMeshProUGUI _nextLevelText;
+
     private bool _stopTimer= false;
     private WaitForSeconds _timer = new WaitForSeconds(1f);
     private Coroutine _coroutine;
+    private ScoreManager _scoreManager;
 
     private bool _isPaused = false;  // oyun durmadý
     private bool _isWarning = false;
@@ -25,6 +30,7 @@ public class GameManager : MonoBehaviour
         _timeSlider.value = _sliderTime; // Deðer de yine SliderTime dan alýyor
         StartTimeText();
         StartCoroutine(DelayStart());
+        _scoreManager = FindObjectOfType<ScoreManager>();
     }
 
     private void StartTimeText()
@@ -54,7 +60,7 @@ public class GameManager : MonoBehaviour
                 continue;
             }
 
-            _sliderTime--;
+            _sliderTime -= Time.deltaTime * 1.2f;
             _timeSlider.value = _sliderTime;
             _timeText.text = Mathf.CeilToInt(_sliderTime).ToString();
 
@@ -64,6 +70,11 @@ public class GameManager : MonoBehaviour
                 _isWarning = true;
                 TimeWarningEffect();
             }
+            else if ( _sliderTime >= 10 && _isWarning)
+            {
+                _isWarning = false;
+                _timeText.color = Color.white;
+            }
 
             if (_sliderTime <= 0)
             {
@@ -72,7 +83,16 @@ public class GameManager : MonoBehaviour
                 GameOver();
             }
 
-            yield return _timer;
+            yield return null;
+        }
+    }
+
+    private void AddTime(float amountTime)
+    {
+        _sliderTime += amountTime;
+        if(_sliderTime > 30f)
+        {
+            _sliderTime = 30f;
         }
     }
     private void TimeWarningEffect()
@@ -83,10 +103,19 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
-        _gameOverPanel.SetActive(true);
-        //Time.timeScale = 0f;
-        StopAllCoroutines();
-
+        if(_scoreManager.Score >= _scoreManager.TargetScore)
+        {
+            Debug.Log("Next Level Panel");
+            _nextLevelPanel.SetActive(true);
+            _nextLevelText.text = "Your Score: " + _scoreManager.Score.ToString();
+        }
+        else
+        {
+            _gameOverPanel.SetActive(true);
+            //Time.timeScale = 0f;
+            StopAllCoroutines();
+            _gameOverText.text = "Your Score: " + _scoreManager.Score;
+        }
     }
 
     private void RestartGame()
@@ -102,6 +131,7 @@ public class GameManager : MonoBehaviour
         _timeText.color = Color.white;
         _timeText.transform.DOKill();
         StartCoroutine(DelayStart());
+        _scoreManager.ScoreText.text = "Score: " + 0.ToString();
     }
 
     private void OnPause()
@@ -139,6 +169,7 @@ public class GameManager : MonoBehaviour
         GameUIEvents.OnPause += OnPause;
         GameUIEvents.OnResume += OnResume;
         GameUIEvents.GameUI += RestartGame;
+        GameUIEvents.TimerUI += AddTime;
     }
 
     private void UnRegisterEvents()
@@ -146,5 +177,6 @@ public class GameManager : MonoBehaviour
         GameUIEvents.GameUI -= RestartGame;
         GameUIEvents.OnPause -= OnPause;
         GameUIEvents.OnResume -= OnResume;
+        GameUIEvents.TimerUI -= AddTime;
     }
 }

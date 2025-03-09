@@ -522,7 +522,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -667,10 +667,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6270657928039287763, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 743596058}
     - target: {fileID: 6632418990672401336, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 7165786424514771278, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 743596058}
     - target: {fileID: 8272422883994711864, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
       propertyPath: _backgroundMusic
       value: 

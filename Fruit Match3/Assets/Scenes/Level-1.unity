@@ -1310,9 +1310,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4646168231415356841, guid: 077845e8d7dd3964baa24e772ee1e0bd, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646168231415356841, guid: 077845e8d7dd3964baa24e772ee1e0bd, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 1215beee3bb2d244b917056dd82634e5, type: 3}
+    - target: {fileID: 4646168231415356841, guid: 077845e8d7dd3964baa24e772ee1e0bd, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4646168231415356841, guid: 077845e8d7dd3964baa24e772ee1e0bd, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -1356,15 +1364,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2349540496639401623, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.26973274
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2349540496639401623, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.5900128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2349540496639401623, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 79.25171
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2349540496639401623, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1560,15 +1568,24 @@ PrefabInstance:
       propertyPath: _backgroundMusic
       value: 
       objectReference: {fileID: 649231922}
+    - target: {fileID: 6270657928039287763, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 649231922}
     - target: {fileID: 6632418990672401336, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 7165786424514771278, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 649231922}
     - target: {fileID: 8272422883994711864, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
       propertyPath: _backgroundMusic
       value: 
       objectReference: {fileID: 649231922}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8739639645791270751, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

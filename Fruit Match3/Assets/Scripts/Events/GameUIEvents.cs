@@ -10,5 +10,6 @@ public static class GameUIEvents
     public static UnityAction GameUI;
     public static UnityAction OnPause;
     public static UnityAction OnResume;
+    public static UnityAction<float> TimerUI;
 
 }

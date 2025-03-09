@@ -28,6 +28,8 @@ public class CheckMatches : MonoBehaviour
                         matchTile.Add(firstMatch);
                         matchTile.Add(secondMatch);
                         matchTile.Add(thirdMatch);
+
+                        
                         Debug.Log("MATCH HORİZONTAL");
                         Debug.Log($"MATCH FOUND (HORIZONTAL) at ({i},{j}), ({i + 1},{j}), ({i + 2},{j})");
                     }
@@ -68,20 +70,26 @@ public class CheckMatches : MonoBehaviour
 
     public Tile FindHint(Tile[,] tiles, int gridX, int gridY)
     {
-        for (int x = 0; x < gridX; x++)
-        {
-            for (int y = 0; y < gridY; y++)
+        for (int x = 0; x < gridX; x++) // sütünları kontrol ediyoruz
+        { 
+            for (int y = 0; y < gridY; y++)  // satıları kontrol ediyoruz
             {
+                // en soldan en sağa kontrol  En yukarıdan en aşağıya kontrol
+
                 Tile currentTile = tiles[x, y];
                 if (currentTile == null) continue;
+                // Kontrolden sonra taş yok o satırda o satırı atla
 
                 // Sağa değişim kontrolü (Swap Right)
-                if (x < gridX - 1)
+                if (x < gridX - 1) // Grid en sağ sütündaysak -1 yapmayız zaten en sondanyız
                 {
                     Tile swappedTile = tiles[x + 1, y]; // Diğer taş
-                    SwapTiles(tiles, x, y, x + 1, y);
+                    SwapTiles(tiles, x, y, x + 1, y);  // mevcut tile ile sağdakini takas ederiz
                     var matchedTiles = FindTileMatches(tiles, gridX, gridY);
-                    SwapTiles(tiles, x, y, x + 1, y); // Swap'ı geri al
+                    // Sonra bu eşleşme bir oluşturdumu 
+
+                    SwapTiles(tiles, x, y, x + 1, y); 
+                    // Takası geri alırım sonra 
 
                     if (matchedTiles.Contains(swappedTile)) // Eğer eşleşme içinde bu taş varsa
                     {

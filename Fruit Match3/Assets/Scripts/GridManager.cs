@@ -192,7 +192,7 @@ public class GridManager : MonoBehaviour
         newTileObj.transform.DOMove(targetPos, 0.3f).SetEase(Ease.OutBounce);
     }
 
-    private void HasAnyMatches() // Eþleþme var ise yok etme 
+    private void HasAnyMatches() // Eþleþme var ise yok et
     {
         List<Tile> matchedTile = _checkMatch.FindTileMatches(_tiles, _gridX, _gridY);
 
@@ -201,7 +201,10 @@ public class GridManager : MonoBehaviour
             foreach (Tile tile in matchedTile)
             {
                 DestroyAnim(tile);
-               TileDestroySound();
+                ScoreEvents.GameScoreEvents?.Invoke(5);
+
+                TileDestroySound();
+
             }
             StartCoroutine(RainDownRoutine());
         }
@@ -223,11 +226,14 @@ public class GridManager : MonoBehaviour
         }
         yield return new WaitForSeconds(0.1f);
         HasAnyMatches();
+        GameUIEvents.TimerUI?.Invoke(1f);
+
 
     }
 
     private void DestroyAnim(Tile tile)
     {
+
         if (_destoryEffect != null)
         {
             GameObject effect = Instantiate(_destoryEffect, tile.transform.position, Quaternion.identity);
