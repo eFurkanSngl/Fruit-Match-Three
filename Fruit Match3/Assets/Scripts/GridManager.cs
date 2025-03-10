@@ -41,7 +41,21 @@ public class GridManager : MonoBehaviour
         StartHintCoroutine();
     }
 
-
+    private void HandlePowerUpMatch(int matchCount)
+    {
+        if(matchCount == 3)
+        {
+            Debug.LogWarning("3lü eþleþme");
+        }
+        else if(matchCount == 5)
+        {
+            Debug.LogWarning("4lü eþleþme");
+        }
+        else if(matchCount == 6)
+        {
+            Debug.LogWarning("5li eþleþme");
+        }
+    }
     private void StartHintCoroutine()
     {
         if (_hintCoroutine != null)
@@ -214,7 +228,7 @@ public class GridManager : MonoBehaviour
         if(_destroySound != null)
         {
             _destroySound.Play();
-            Debug.Log("Music On Play");
+            //Debug.Log("Music On Play");
         }
     }
 
@@ -437,10 +451,15 @@ public class GridManager : MonoBehaviour
     }
 
 
-    private void OnEnable() => RegisterEvents();
+    private void OnEnable()
+    {
+        RegisterEvents();
+        CheckMatches.MultiMatchEvent += HandlePowerUpMatch;
+    }
     private void OnDisable()
     {
         UnRegisterEvents();
+        CheckMatches.MultiMatchEvent -= HandlePowerUpMatch;
     }
 
     private void RegisterEvents() => GameEvent.OnClickEvents += SelectedTile;

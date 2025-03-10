@@ -8,13 +8,18 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Timer Settings")]
     [SerializeField] private Slider _timeSlider;
     [SerializeField] private TextMeshProUGUI _timeText;
     [SerializeField] private float _sliderTime = 30f;
+
+    [Header("Panels Settings")]
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _nextLevelPanel;
     [SerializeField] private TextMeshProUGUI _gameOverText;
     [SerializeField] private TextMeshProUGUI _nextLevelText;
+    [SerializeField] private AudioSource _gameOverAudio;
+    [SerializeField] private AudioSource _nextLevelAudio;
 
     private bool _stopTimer= false;
     private WaitForSeconds _timer = new WaitForSeconds(1f);
@@ -108,6 +113,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Next Level Panel");
             _nextLevelPanel.SetActive(true);
             _nextLevelText.text = "Your Score: " + _scoreManager.Score.ToString();
+            _nextLevelAudio.Play();
         }
         else
         {
@@ -115,6 +121,7 @@ public class GameManager : MonoBehaviour
             //Time.timeScale = 0f;
             StopAllCoroutines();
             _gameOverText.text = "Your Score: " + _scoreManager.Score;
+            _gameOverAudio.Play();
         }
     }
 
