@@ -10,6 +10,7 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private AudioMixer _myMixer;
     [SerializeField] private Slider  _musicSlider;
     [SerializeField] private Slider _sfxSlider;
+    
 
     private void Start()
     {

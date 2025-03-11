@@ -26,10 +26,17 @@ public class CamereController : MonoBehaviour
 
     private void OnEnable()=> RegisterEvents();
     private void OnDisable()=>UnRegisterEvents();
-        
 
-    private void RegisterEvents() =>  CameraFilterEvents.CameraEvents += SizeFilterCam;
-    private void UnRegisterEvents() =>  CameraFilterEvents.CameraEvents -= SizeFilterCam;
+
+    private void RegisterEvents() {
+
+        //CameraFilterEvents.CameraEvents += SizeFilterCam;
+        GridManager.GridManagerEvent += SizeFilterCam;
+    }
+    private void UnRegisterEvents() {
+        GridManager.GridManagerEvent -= SizeFilterCam;
+        //CameraFilterEvents.CameraEvents -= SizeFilterCam;
+    }  
 
 
 

@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -13,6 +14,8 @@ public class Tile : MonoBehaviour
     private int _gridX, _gridY; // Tilelarýn Grdi üzerinde ki yeri 
     private GridManager _gridManager;
     [SerializeField] private int _tileId;
+    public PowerUpType powerUpType = PowerUpType.None;
+
 
     public int GridX => _gridX;  // Getter ile deðere dýþardan eriþim
     public int GridY => _gridY;
@@ -25,6 +28,10 @@ public class Tile : MonoBehaviour
         _gridManager = FindObjectOfType<GridManager>();
     }
 
+    public void SetPowerUp(PowerUpType type)
+    {
+        powerUpType=type;
+    }
  
     private void OnMouseDown()
     {
@@ -53,7 +60,6 @@ public class Tile : MonoBehaviour
 
     }
 
-
     private void OnEnable() => RegisterEvents();
     private void OnDisable() => UnRegisterEvents();
 
@@ -68,8 +74,12 @@ public class Tile : MonoBehaviour
         GameEvent.SelectsTile -= SelectTile;
     }
     //  Seçim SOnrasý rengi eski haline getirme Eventi
+}
 
-
-
-
+public enum PowerUpType
+{
+    None,
+    Horizontal,
+    Vertical,
+    Bomb
 }

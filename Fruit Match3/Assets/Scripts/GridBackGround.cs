@@ -28,6 +28,13 @@ public class GridBackground : MonoBehaviour
 
     private void OnEnable() => RegisterEvents();
     private void OnDisable() => UnRegisterEvents();
-    private void RegisterEvents() => GridUIEvents.GridEvents += AdjustGridBg;
-    private void UnRegisterEvents() => GridUIEvents.GridEvents -= AdjustGridBg;
+    private void RegisterEvents() {
+        //GridUIEvents.GridEvents += AdjustGridBg;
+        GridManager.GridManagerEvent += AdjustGridBg;
+    } 
+    private void UnRegisterEvents()
+    {
+        //GridUIEvents.GridEvents -= AdjustGridBg;
+        GridManager.GridManagerEvent -= AdjustGridBg;
+    } 
 }

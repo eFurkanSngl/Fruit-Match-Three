@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class GridManager : MonoBehaviour
 {
+    public static event UnityAction<int, int> GridManagerEvent;
+
     [Header("Grid Settings")]
     [SerializeField] private int _gridX;
     [SerializeField] private int _gridY;
@@ -26,11 +29,18 @@ public class GridManager : MonoBehaviour
     private CheckMatches _checkMatch;
     private bool _isShowHint = false;
     private Coroutine _hintCoroutine;
-    
+    private int _multiMatch = 0;
+
     [Header("UI Settings")]
     [SerializeField] private AudioSource _destroySound;
     [SerializeField] private GameObject _destoryEffect;
 
+    [Header("Power Up Settings")]
+    [SerializeField] private GameObject _horizontalPowerUpPrefab;
+    [SerializeField] private GameObject _verticalPowerUpPrefab;
+    [SerializeField] private GameObject _bombPowerUpPrefab;
+
+    
 
     private void Start()
     {
@@ -43,17 +53,49 @@ public class GridManager : MonoBehaviour
 
     private void HandlePowerUpMatch(int matchCount)
     {
-        if(matchCount == 3)
+        if (matchCount >= 4 && matchCount <= 6)
         {
-            Debug.LogWarning("3lü eþleþme");
-        }
-        else if(matchCount == 5)
-        {
-            Debug.LogWarning("4lü eþleþme");
-        }
-        else if(matchCount == 6)
-        {
-            Debug.LogWarning("5li eþleþme");
+            List<Tile> matchedTiles = _checkMatch.FindTileMatches(_tiles, _gridX, _gridY);
+
+            if (matchedTiles.Count == 0) return;
+
+            Tile selectedTile = matchedTiles[Random.Range(0, matchedTiles.Count)];
+            //Random Tile seçiyoruz
+
+            PowerUpType powerUp = PowerUpType.None;
+            GameObject powerUpPrefab = null;
+
+            if(matchCount == 4)
+            {
+                Debug.Log("4lü eþleþme Horz Power Up");
+                powerUp = PowerUpType.Horizontal;
+                powerUpPrefab = _horizontalPowerUpPrefab;
+            }
+            else if(matchCount == 5)
+            {
+                Debug.Log("5li eþleþme vertical");
+                powerUp = PowerUpType.Vertical;
+                powerUpPrefab= _verticalPowerUpPrefab;
+            }
+            else if(matchCount == 6)
+            {
+                Debug.Log("6lý eþleþme bomb");
+                powerUp = PowerUpType.Bomb;
+                powerUpPrefab=_bombPowerUpPrefab;
+            }
+
+            if(powerUp != PowerUpType.None && powerUpPrefab != null)
+            {
+                Vector3 pos = selectedTile.transform.position;
+                Destroy(selectedTile.gameObject);
+
+                GameObject obj = Instantiate(powerUpPrefab,pos,Quaternion.identity);
+                Tile powerUpTile = obj.GetComponent<Tile>();
+                powerUpTile.Initialize(selectedTile.GridX,selectedTile.GridY,this);
+                powerUpTile.SetPowerUp(powerUp);
+
+                _tiles[selectedTile.GridX,selectedTile.GridY] = powerUpTile;
+            } 
         }
     }
     private void StartHintCoroutine()
@@ -122,10 +164,14 @@ public class GridManager : MonoBehaviour
                 obj.transform.SetParent(transform);
             
             }
-        }
-        GridUIEvents.GridBorderEvents?.Invoke(_gridX, _gridY);
-        GridUIEvents.GridEvents?.Invoke(_gridX, _gridY);
-        CameraFilterEvents.CameraEvents?.Invoke(_gridX,_gridY);
+        } 
+        //GridUIEvents.GridEvents?.Invoke(_gridX, _gridY);
+        //CameraFilterEvents.CameraEvents?.Invoke(_gridX,_gridY);
+        //GridUIEvents.GridBorderEvents?.Invoke(_gridX, _gridY);
+        
+        GridManagerEvent?.Invoke(_gridX,_gridY);
+        //Event kullanýp birden fazla olayý dinledik ve tetikledik hepsi sýrayla çalýþtý..
+       
     }
     private void CreateTileBackground()
     {
@@ -220,7 +266,14 @@ public class GridManager : MonoBehaviour
                 TileDestroySound();
 
             }
+
+            _multiMatch++;
+            HandlePowerUpMatch(_multiMatch);
             StartCoroutine(RainDownRoutine());
+        }
+        else
+        {
+            _multiMatch = 0;
         }
     }
     private void TileDestroySound()
@@ -454,12 +507,10 @@ public class GridManager : MonoBehaviour
     private void OnEnable()
     {
         RegisterEvents();
-        CheckMatches.MultiMatchEvent += HandlePowerUpMatch;
     }
     private void OnDisable()
     {
         UnRegisterEvents();
-        CheckMatches.MultiMatchEvent -= HandlePowerUpMatch;
     }
 
     private void RegisterEvents() => GameEvent.OnClickEvents += SelectedTile;

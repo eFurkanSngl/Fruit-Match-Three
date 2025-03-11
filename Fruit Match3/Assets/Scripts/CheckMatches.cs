@@ -8,12 +8,10 @@ using UnityEngine.Events;
 
 public class CheckMatches : MonoBehaviour
 {
-    private int _multiMatch = 0;
-    public static event UnityAction<int> MultiMatchEvent;
+    
     public List<Tile> FindTileMatches(Tile[,] tiles, int gridX, int gridY)
     {
         List<Tile> matchTile = new List<Tile>();
-        bool _hasMatch = false;
 
         for(int i = 0; i < gridY; i++)  // kaç tane satır varsa döner 
         {
@@ -32,10 +30,9 @@ public class CheckMatches : MonoBehaviour
                         matchTile.Add(firstMatch);
                         matchTile.Add(secondMatch);
                         matchTile.Add(thirdMatch);
-                        _hasMatch = true;
                         
-                        Debug.Log("MATCH HORİZONTAL");
-                        Debug.Log($"MATCH FOUND (HORIZONTAL) at ({i},{j}), ({i + 1},{j}), ({i + 2},{j})");
+                        //Debug.Log("MATCH HORİZONTAL");
+                        //Debug.Log($"MATCH FOUND (HORIZONTAL) at ({i},{j}), ({i + 1},{j}), ({i + 2},{j})");
                     }
                 }
             } 
@@ -59,24 +56,13 @@ public class CheckMatches : MonoBehaviour
                         matchTile.Add(firstMatchY);
                         matchTile.Add(secondMatchY);
                         matchTile.Add(thirdMatchY);
-                        _hasMatch= true;
 
-                        Debug.Log($"MATCH FOUND (VERTICAL) at ({x},{y}), ({x},{y + 1}), ({x},{y + 2})");
+                        //Debug.Log($"MATCH FOUND (VERTICAL) at ({x},{y}), ({x},{y + 1}), ({x},{y + 2})");
 
                     }
                 }
             }
 
-        }
-
-        if( _hasMatch)
-        {
-            _multiMatch++;
-            MultiMatchEvent?.Invoke( _multiMatch );
-        }
-        else
-        {
-            _multiMatch = 0;
         }
 
         // Sütün yatay ilerler kaç tane olduğunu X den görüyoruz sonra kontrol ediyoruz

@@ -57,9 +57,17 @@ public class GridBorder : MonoBehaviour
     private void OnEnable() => RegisterEvents();
     private void OnDisable() => UnRegisterEvents();
 
-    private void RegisterEvents() => GridUIEvents.GridBorderEvents += CreateGridBorder;
-    private void UnRegisterEvents() => GridUIEvents.GridBorderEvents -= CreateGridBorder;
+    private void RegisterEvents()
+    {
+        //GridUIEvents.GridBorderEvents += CreateGridBorder;
+        GridManager.GridManagerEvent += CreateGridBorder;
+    }
+    private void UnRegisterEvents()
+    {
+        GridManager.GridManagerEvent -= CreateGridBorder;
 
+        //GridUIEvents.GridBorderEvents -= CreateGridBorder;
+    }
 }      
  
 
