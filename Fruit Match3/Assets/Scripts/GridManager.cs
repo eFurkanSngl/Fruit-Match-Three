@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GridManager : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _horizontalPowerUpPrefab;
     [SerializeField] private GameObject _verticalPowerUpPrefab;
     [SerializeField] private GameObject _bombPowerUpPrefab;
+    [SerializeField] private Animator _anim;
 
     
 
@@ -51,19 +53,19 @@ public class GridManager : MonoBehaviour
         StartHintCoroutine();
     }
 
-    private void HandlePowerUpMatch(int matchCount)
+    private void HandlePowerUpMatch(int matchCount)//multiMatchden alýyor sayýmý
     {
-        if (matchCount >= 4 && matchCount <= 6)
+        if (matchCount >= 4 && matchCount <= 6) // bu iki sayý arasýnda ise eþleþme powerUp
         {
             List<Tile> matchedTiles = _checkMatch.FindTileMatches(_tiles, _gridX, _gridY);
 
             if (matchedTiles.Count == 0) return;
 
             Tile selectedTile = matchedTiles[Random.Range(0, matchedTiles.Count)];
-            //Random Tile seçiyoruz
+            // eþleþmelerden Random Tile seçiyoruz
 
-            PowerUpType powerUp = PowerUpType.None;
-            GameObject powerUpPrefab = null;
+            PowerUpType powerUp = PowerUpType.None; // powerUp tipi
+            GameObject powerUpPrefab = null;  // buda yaratýlacak obje
 
             if(matchCount == 4)
             {
@@ -83,14 +85,18 @@ public class GridManager : MonoBehaviour
                 powerUp = PowerUpType.Bomb;
                 powerUpPrefab=_bombPowerUpPrefab;
             }
+            //buralarda sayýya göre powerUp tipini veriyoruz ve Prefabi ona göre güncellliyoruz
 
             if(powerUp != PowerUpType.None && powerUpPrefab != null)
             {
                 Vector3 pos = selectedTile.transform.position;
                 Destroy(selectedTile.gameObject);
+                //eski Tile yok ediyoruz 
 
                 GameObject obj = Instantiate(powerUpPrefab,pos,Quaternion.identity);
                 Tile powerUpTile = obj.GetComponent<Tile>();
+
+
                 powerUpTile.Initialize(selectedTile.GridX,selectedTile.GridY,this);
                 powerUpTile.SetPowerUp(powerUp);
 
@@ -98,6 +104,64 @@ public class GridManager : MonoBehaviour
             } 
         }
     }
+
+    public void ClearRow(int row)
+    {
+        for(int i= 0; i <_gridX;i++)
+        {
+            if (_tiles[i,row] != null)
+            {
+                Destroy(_tiles[i,row].gameObject);
+                ScoreEvents.GameScoreEvents?.Invoke(5);
+                GameUIEvents.TimerUI?.Invoke(1f);
+                DestroyAnim(_tiles[i, row]);
+                TileDestroySound();
+                _tiles[i,row] = null;
+            }
+        }
+    }
+
+    public void ClearColumn(int column)
+    {
+        for (int y = 0; y < _gridY; y++)
+        {
+            if (_tiles[column, y] != null)
+            {
+                Destroy(_tiles[column, y].gameObject);
+                ScoreEvents.GameScoreEvents?.Invoke(5);
+                GameUIEvents.TimerUI?.Invoke(1f);
+                DestroyAnim(_tiles[column, y]);
+                TileDestroySound();
+                _tiles[column, y] = null;
+
+            }
+        }
+    }
+    public void ClearBombTiles(int x, int y)
+    {
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                int newX = x + i;
+                int newY = y + j;
+
+                if (newX >= 0 && newX < _gridX && newY >= 0 && newY < _gridY)
+                {
+                    if (_tiles[newX, newY] != null)
+                    {
+                        Destroy(_tiles[newX, newY].gameObject);
+                        ScoreEvents.GameScoreEvents?.Invoke(5);
+                        GameUIEvents.TimerUI?.Invoke(1f);
+                        DestroyAnim(_tiles[newX, newY]);
+                        TileDestroySound();
+                        _tiles[newX, newY] = null;
+                    }
+                }
+            }
+        }
+    }
+
     private void StartHintCoroutine()
     {
         if (_hintCoroutine != null)
@@ -189,7 +253,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    private IEnumerator RainDownRoutine()
+    public IEnumerator RainDownRoutine()
     {
         _isFalling = true;
         yield return new WaitForSeconds(0.3f); // Yok olma animasyonunun bitmesini bekle
@@ -252,7 +316,7 @@ public class GridManager : MonoBehaviour
         newTileObj.transform.DOMove(targetPos, 0.3f).SetEase(Ease.OutBounce);
     }
 
-    private void HasAnyMatches() // Eþleþme var ise yok et
+    public void HasAnyMatches() // Eþleþme var ise yok et
     {
         List<Tile> matchedTile = _checkMatch.FindTileMatches(_tiles, _gridX, _gridY);
 
@@ -262,9 +326,7 @@ public class GridManager : MonoBehaviour
             {
                 DestroyAnim(tile);
                 ScoreEvents.GameScoreEvents?.Invoke(5);
-
                 TileDestroySound();
-
             }
 
             _multiMatch++;
@@ -276,7 +338,7 @@ public class GridManager : MonoBehaviour
             _multiMatch = 0;
         }
     }
-    private void TileDestroySound()
+    public void TileDestroySound()
     {
         if(_destroySound != null)
         {

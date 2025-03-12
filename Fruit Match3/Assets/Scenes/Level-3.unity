@@ -5595,6 +5595,10 @@ MonoBehaviour:
   swapEase: 28
   _destroySound: {fileID: 1239551308}
   _destoryEffect: {fileID: 661104804}
+  _horizontalPowerUpPrefab: {fileID: 1211797497835626560, guid: 58c301d89c6f774409e31ad98af96ffa, type: 3}
+  _verticalPowerUpPrefab: {fileID: 44761556218524431, guid: cfd1c10101224374ca2938d1eb6e543b, type: 3}
+  _bombPowerUpPrefab: {fileID: 6820486603212637411, guid: f911071e194c80546b83a93eb5dc929f, type: 3}
+  _anim: {fileID: 0}
 --- !u!4 &801018129
 Transform:
   m_ObjectHideFlags: 0

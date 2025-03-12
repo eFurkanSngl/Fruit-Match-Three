@@ -134,4 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 0
-  _powerUpType: 1
+  powerUpType: 1

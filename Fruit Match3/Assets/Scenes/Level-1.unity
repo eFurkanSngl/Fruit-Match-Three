@@ -956,6 +956,7 @@ MonoBehaviour:
   - {fileID: 6020825483691194900, guid: 8ca61bf116e91e94fb5f812a6601c10f, type: 3}
   - {fileID: 6528898580684368587, guid: f213a9c667f696041b2692b8104dee93, type: 3}
   - {fileID: 6590222571046508221, guid: b9f65acce80509a4ea87eab45f47a9c0, type: 3}
+  - {fileID: 8385204391392020274, guid: e2d0959c3c0c36f4fb035b215ba0145c, type: 3}
   _tileBg: {fileID: 9117133927697253264, guid: d31560aea33f7744298f4b8e4fab34ef, type: 3}
   _swapDuration: 0.3
   swapEase: 28
@@ -964,6 +965,7 @@ MonoBehaviour:
   _horizontalPowerUpPrefab: {fileID: 1211797497835626560, guid: 58c301d89c6f774409e31ad98af96ffa, type: 3}
   _verticalPowerUpPrefab: {fileID: 44761556218524431, guid: cfd1c10101224374ca2938d1eb6e543b, type: 3}
   _bombPowerUpPrefab: {fileID: 6820486603212637411, guid: f911071e194c80546b83a93eb5dc929f, type: 3}
+  _anim: {fileID: 5059103842564429500, guid: f911071e194c80546b83a93eb5dc929f, type: 3}
 --- !u!1 &842859841 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7002511762947433468, guid: 8aed33c64acbf3a4193ac09c3421c292, type: 3}
@@ -1351,10 +1353,6 @@ PrefabInstance:
     - target: {fileID: 1029913766148030493, guid: d7e383da67d36c445974c5e972c498e9, type: 3}
       propertyPath: m_Name
       value: NextLevelPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029913766148030493, guid: d7e383da67d36c445974c5e972c498e9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4604745570942567784, guid: d7e383da67d36c445974c5e972c498e9, type: 3}
       propertyPath: m_LocalPosition.x

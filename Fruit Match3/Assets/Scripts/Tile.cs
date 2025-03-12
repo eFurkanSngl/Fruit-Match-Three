@@ -32,11 +32,40 @@ public class Tile : MonoBehaviour
     {
         powerUpType=type;
     }
- 
+
     private void OnMouseDown()
     {
-       GameEvent.OnClickEvents?.Invoke(this);
+        GameEvent.OnClickEvents?.Invoke(this);
         // Mouse Sol Týk Events
+
+        if (powerUpType == PowerUpType.None)
+        {
+            return;
+        }
+
+        else if (powerUpType == PowerUpType.Horizontal)
+        {
+            Debug.Log("Horiz");
+            _gridManager.ClearRow(GridY);
+
+        }
+
+        else if (powerUpType == PowerUpType.Vertical)
+        {
+            Debug.Log("Vert");
+            _gridManager.ClearColumn(GridX);
+
+        }
+        else if (powerUpType == PowerUpType.Bomb)
+        {
+            Debug.Log("Bomb");
+            _gridManager.ClearBombTiles(GridX, GridY);
+
+
+        }
+        _gridManager.StartCoroutine(_gridManager.RainDownRoutine());
+         Destroy(gameObject);
+        //_gridManager.TileDestroySound();
     }
 
     public void Initialize(int x,int y ,GridManager gridManager)
