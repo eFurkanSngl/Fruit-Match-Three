@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _nextLevelPanel;
     [SerializeField] private TextMeshProUGUI _gameOverText;
     [SerializeField] private TextMeshProUGUI _nextLevelText;
+    [SerializeField] private TextMeshProUGUI _highScoreText;
+    [SerializeField] private TextMeshProUGUI _highScoreTextNext;
+
     [SerializeField] private AudioSource _gameOverAudio;
     [SerializeField] private AudioSource _nextLevelAudio;
 
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
         StartTimeText();
         StartCoroutine(DelayStart());
         _scoreManager = FindObjectOfType<ScoreManager>();
+
     }
 
     private void StartTimeText()
@@ -113,6 +117,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Next Level Panel");
             _nextLevelPanel.SetActive(true);
             _nextLevelText.text = "Your Score: " + _scoreManager.Score.ToString();
+            //_highScoreText.text = "High Score:" + _scoreManager.Score.ToString();
             _nextLevelAudio.Play();
         }
         else
@@ -121,6 +126,7 @@ public class GameManager : MonoBehaviour
             //Time.timeScale = 0f;
             StopAllCoroutines();
             _gameOverText.text = "Your Score: " + _scoreManager.Score;
+            //_highScoreTextNext.text = "High Score:" + _scoreManager.Score;
             _gameOverAudio.Play();
         }
     }
@@ -129,6 +135,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         _gameOverPanel.SetActive(false);
+        _nextLevelPanel.SetActive(false) ;
         StopAllCoroutines(); // eski olaný sýfýrlamak için durduruyoruz
         _timeText.text = _sliderTime.ToString();
         _sliderTime = 30f;
@@ -138,7 +145,8 @@ public class GameManager : MonoBehaviour
         _timeText.color = Color.white;
         _timeText.transform.DOKill();
         StartCoroutine(DelayStart());
-        _scoreManager.ScoreText.text = "Score: " + 0.ToString();
+        _scoreManager.ScoreText.text ="Score: " + 0.ToString();
+        _scoreManager.ResetScore();
     }
 
     private void OnPause()

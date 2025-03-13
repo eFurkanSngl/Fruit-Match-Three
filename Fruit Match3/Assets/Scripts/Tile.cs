@@ -42,8 +42,23 @@ public class Tile : MonoBehaviour
         {
             return;
         }
+        transform.DOScale(0.20f, 0.2f).SetEase(Ease.OutBounce).
+            OnComplete(() =>
+            {
+                transform.DOShakePosition(0.3f, new Vector3(0, 0, 15))
+                .OnComplete(() =>
+                {
+                    PowerUpEffect();
+                    Destroy(gameObject);
+                });
 
-        else if (powerUpType == PowerUpType.Horizontal)
+            });
+        //_gridManager.TileDestroySound();
+    }
+
+    private void PowerUpEffect()
+    {
+        if (powerUpType == PowerUpType.Horizontal)
         {
             Debug.Log("Horiz");
             _gridManager.ClearRow(GridY);
@@ -64,8 +79,6 @@ public class Tile : MonoBehaviour
 
         }
         _gridManager.StartCoroutine(_gridManager.RainDownRoutine());
-         Destroy(gameObject);
-        //_gridManager.TileDestroySound();
     }
 
     public void Initialize(int x,int y ,GridManager gridManager)

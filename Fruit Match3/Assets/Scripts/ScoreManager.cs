@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 
@@ -14,10 +15,13 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+       ResetScore();
+    }
+    public void ResetScore()
+    {
         score = 0;
         UpdateScore();
     }
-
     private void  UpdateScore()
     {
         if(_scoreText != null)
@@ -25,7 +29,7 @@ public class ScoreManager : MonoBehaviour
             _scoreText.text =  "Score:" + score.ToString();
         }
     }
-
+  
     private void IncreaseScore(int amount)
     {
         score += amount;
