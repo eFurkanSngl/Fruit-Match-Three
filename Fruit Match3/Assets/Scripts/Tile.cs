@@ -15,7 +15,7 @@ public class Tile : MonoBehaviour
     private GridManager _gridManager;
     [SerializeField] private int _tileId;
     public PowerUpType powerUpType = PowerUpType.None;
-
+    [SerializeField] private Animator _animator;
 
     public int GridX => _gridX;  // Getter ile deðere dýþardan eriþim
     public int GridY => _gridY;
@@ -26,6 +26,7 @@ public class Tile : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _originColor = _spriteRenderer.color;
         _gridManager = FindObjectOfType<GridManager>();
+        _animator = GetComponent<Animator>();
     }
 
     public void SetPowerUp(PowerUpType type)
@@ -42,17 +43,23 @@ public class Tile : MonoBehaviour
         {
             return;
         }
+        if (powerUpType == PowerUpType.Bomb)
+        {
+            _animator.SetTrigger("isBombs");
+
+        }
         transform.DOScale(0.20f, 0.2f).SetEase(Ease.OutBounce).
             OnComplete(() =>
             {
-                transform.DOShakePosition(0.3f, new Vector3(0, 0, 15))
+                transform.DOShakePosition(0.5f,0.3f)
                 .OnComplete(() =>
                 {
                     PowerUpEffect();
-                    Destroy(gameObject);
+                    Destroy(gameObject,0.5f);
                 });
 
             });
+      
         //_gridManager.TileDestroySound();
     }
 
@@ -63,12 +70,14 @@ public class Tile : MonoBehaviour
             Debug.Log("Horiz");
             _gridManager.ClearRow(GridY);
 
+
         }
 
         else if (powerUpType == PowerUpType.Vertical)
         {
             Debug.Log("Vert");
             _gridManager.ClearColumn(GridX);
+
 
         }
         else if (powerUpType == PowerUpType.Bomb)

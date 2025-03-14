@@ -698,6 +698,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 723376631764094646, guid: d7e383da67d36c445974c5e972c498e9, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.110224724
+      objectReference: {fileID: 0}
+    - target: {fileID: 723376631764094646, guid: d7e383da67d36c445974c5e972c498e9, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723376631764094646, guid: d7e383da67d36c445974c5e972c498e9, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 723376631764094646, guid: d7e383da67d36c445974c5e972c498e9, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4280025343
+      objectReference: {fileID: 0}
     - target: {fileID: 1029913766148030493, guid: d7e383da67d36c445974c5e972c498e9, type: 3}
       propertyPath: m_Name
       value: NextLevelPanel
@@ -1047,7 +1063,8 @@ MonoBehaviour:
   _horizontalPowerUpPrefab: {fileID: 1211797497835626560, guid: 58c301d89c6f774409e31ad98af96ffa, type: 3}
   _verticalPowerUpPrefab: {fileID: 44761556218524431, guid: cfd1c10101224374ca2938d1eb6e543b, type: 3}
   _bombPowerUpPrefab: {fileID: 6820486603212637411, guid: f911071e194c80546b83a93eb5dc929f, type: 3}
-  _anim: {fileID: 0}
+  _anim: {fileID: 5059103842564429500, guid: f911071e194c80546b83a93eb5dc929f, type: 3}
+  _sfx: {fileID: 1551058481}
 --- !u!4 &801018129
 Transform:
   m_ObjectHideFlags: 0
@@ -1358,6 +1375,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 392098740668775693, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c2254df664d78ec4b935b991f699b8f4, type: 3}
     - target: {fileID: 2198911947646410010, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
       propertyPath: m_Name
       value: GameOverPanel
@@ -1410,6 +1431,22 @@ PrefabInstance:
       propertyPath: m_Transition
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8743575861868012794, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743575861868012794, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743575861868012794, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743575861868012794, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 9188345631086681030, guid: 50046abf00053aa4c8304ef2b70dcf3c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1447,10 +1484,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1400284145
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1884609657562215114, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_Name
+      value: powerUpSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493844575015347339, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
 --- !u!225 &1475923969 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 5701713381246638828, guid: 75dea2d65d766af4bb6cdee9f87a9bd6, type: 3}
   m_PrefabInstance: {fileID: 755162529}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1551058481 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1973233251942856436, guid: 2aa5c707be31010499f79dc496a5cfd6, type: 3}
+  m_PrefabInstance: {fileID: 1400284145}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1667833441 stripped
 GameObject:
@@ -1731,3 +1830,4 @@ SceneRoots:
   - {fileID: 1045857506}
   - {fileID: 743596059}
   - {fileID: 539441442}
+  - {fileID: 1400284145}

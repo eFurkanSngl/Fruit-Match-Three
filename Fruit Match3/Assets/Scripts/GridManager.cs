@@ -41,8 +41,10 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _verticalPowerUpPrefab;
     [SerializeField] private GameObject _bombPowerUpPrefab;
     [SerializeField] private Animator _anim;
+    [SerializeField] private AudioSource _sfx;
 
-    
+
+
 
     private void Start()
     {
@@ -117,6 +119,7 @@ public class GridManager : MonoBehaviour
                 DestroyAnim(_tiles[i, row]);
                 TileDestroySound();
                 _tiles[i,row] = null;
+                _sfx.Play();
             }
         }
     }
@@ -133,6 +136,7 @@ public class GridManager : MonoBehaviour
                 DestroyAnim(_tiles[column, y]);
                 TileDestroySound();
                 _tiles[column, y] = null;
+                _sfx.Play();
 
             }
         }
@@ -156,6 +160,8 @@ public class GridManager : MonoBehaviour
                         DestroyAnim(_tiles[newX, newY]);
                         TileDestroySound();
                         _tiles[newX, newY] = null;
+                        _sfx.Play();
+
                     }
                 }
             }

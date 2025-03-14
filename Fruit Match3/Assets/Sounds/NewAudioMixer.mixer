@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!244 &-6822263617021934623
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 53340b9b060566d429df34edd543f871
+  m_EffectName: Attenuation
+  m_MixLevel: fbc8545d1694bbd47b48c150ec3a6568
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-6613010958190360726
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -112,6 +126,7 @@ AudioMixerController:
     - 00f2ec58e4bfb8d4b9f44288433219f9
     - 15517d251e1a17b4195be694233b7f0e
     - c281e65e76478a649bde3eee510f48ce
+    - ec5e0c249b7c2924893880a3b380d465
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -161,6 +176,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: a964a76412053da44b48e5bb5e4f3dd2
   m_FloatValues:
     e33add117fce2b64d9d2a2b1881406d3: -0.3
+    08a3b9613beca564eaf652b0a1a3c001: 0.04171297
     12e46f5833c2d2948a4027c8ba8bf948: -34
   m_TransitionOverrides: {}
 --- !u!244 &411403911386197302
@@ -189,11 +205,31 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -1398426555999326942}
   - {fileID: -4790085546151584220}
+  - {fileID: 1843394849725075857}
   m_Volume: e33add117fce2b64d9d2a2b1881406d3
   m_Pitch: c303b5733a9d8d146a44ffef5abe505d
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 411403911386197302}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &1843394849725075857
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: powerUpSFX
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: ec5e0c249b7c2924893880a3b380d465
+  m_Children: []
+  m_Volume: 32b64a898a71435428685308e43cc349
+  m_Pitch: ca789882fdbad9a438396f26ea9cc841
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -6822263617021934623}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

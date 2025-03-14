@@ -18,8 +18,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _nextLevelPanel;
     [SerializeField] private TextMeshProUGUI _gameOverText;
     [SerializeField] private TextMeshProUGUI _nextLevelText;
-    [SerializeField] private TextMeshProUGUI _highScoreText;
-    [SerializeField] private TextMeshProUGUI _highScoreTextNext;
+    [SerializeField] private TextMeshProUGUI _nextlevelHighScore;
+    [SerializeField] private TextMeshProUGUI _gameOverHighScore;
+
 
     [SerializeField] private AudioSource _gameOverAudio;
     [SerializeField] private AudioSource _nextLevelAudio;
@@ -112,12 +113,13 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
+        _scoreManager.SaveHighScore();
         if(_scoreManager.Score >= _scoreManager.TargetScore)
         {
             Debug.Log("Next Level Panel");
             _nextLevelPanel.SetActive(true);
-            _nextLevelText.text = "Your Score: " + _scoreManager.Score.ToString();
-            //_highScoreText.text = "High Score:" + _scoreManager.Score.ToString();
+            _nextLevelText.text = "Your Score: " + _scoreManager.Score;
+            _nextlevelHighScore.text = "High Score: " + _scoreManager.HighScore;
             _nextLevelAudio.Play();
         }
         else
@@ -126,7 +128,8 @@ public class GameManager : MonoBehaviour
             //Time.timeScale = 0f;
             StopAllCoroutines();
             _gameOverText.text = "Your Score: " + _scoreManager.Score;
-            //_highScoreTextNext.text = "High Score:" + _scoreManager.Score;
+            _gameOverHighScore.text = "High Score: " + _scoreManager.HighScore;
+
             _gameOverAudio.Play();
         }
     }

@@ -12,9 +12,12 @@ public class ScoreManager : MonoBehaviour
     public int Score => score;
     public int TargetScore => _targetScore;
     public TextMeshProUGUI ScoreText => _scoreText;
+    private int _highScore;
+    public int HighScore => _highScore;
 
     private void Start()
     {
+        _highScore = PlayerPrefs.GetInt("HighScore", 0);
        ResetScore();
     }
     public void ResetScore()
@@ -28,6 +31,16 @@ public class ScoreManager : MonoBehaviour
         {
             _scoreText.text =  "Score:" + score.ToString();
         }
+    }
+
+    public void SaveHighScore()
+    {
+        if(score > _highScore)
+        {
+            _highScore = score;
+            PlayerPrefs.SetInt("HighScore",_highScore);
+        }
+        PlayerPrefs.Save();
     }
   
     private void IncreaseScore(int amount)

@@ -135,3 +135,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tileId: 0
   powerUpType: 1
+  _animator: {fileID: 0}

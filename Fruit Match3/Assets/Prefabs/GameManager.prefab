@@ -48,3 +48,10 @@ MonoBehaviour:
   _timeText: {fileID: 0}
   _sliderTime: 30
   _gameOverPanel: {fileID: 0}
+  _nextLevelPanel: {fileID: 0}
+  _gameOverText: {fileID: 0}
+  _nextLevelText: {fileID: 0}
+  _nextlevelHighScore: {fileID: 0}
+  _gameOverHighScore: {fileID: 0}
+  _gameOverAudio: {fileID: 0}
+  _nextLevelAudio: {fileID: 0}
