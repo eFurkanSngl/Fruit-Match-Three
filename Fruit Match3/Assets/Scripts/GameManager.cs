@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     private bool _isPaused = false;  // oyun durmadý
     private bool _isWarning = false;
 
+    [SerializeField] private float _decreaseTime;
+    [SerializeField] private float _increaseTime;
+
     private void Start()
     {
         _timeSlider.maxValue = _sliderTime;  // maks sliderTime kadar ol
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
                 continue;
             }
 
-            _sliderTime -= Time.deltaTime * 1.2f;
+            _sliderTime -= Time.deltaTime * _decreaseTime;
             _timeSlider.value = _sliderTime;
             _timeText.text = Mathf.CeilToInt(_sliderTime).ToString();
 
@@ -99,6 +102,7 @@ public class GameManager : MonoBehaviour
 
     private void AddTime(float amountTime)
     {
+        amountTime = _increaseTime;
         _sliderTime += amountTime;
         if(_sliderTime > 30f)
         {

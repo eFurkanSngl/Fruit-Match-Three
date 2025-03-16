@@ -42,6 +42,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _bombPowerUpPrefab;
     [SerializeField] private Animator _anim;
     [SerializeField] private AudioSource _sfx;
+    [SerializeField] private AudioSource _bombsfx;
+
 
 
 
@@ -160,8 +162,7 @@ public class GridManager : MonoBehaviour
                         DestroyAnim(_tiles[newX, newY]);
                         TileDestroySound();
                         _tiles[newX, newY] = null;
-                        _sfx.Play();
-
+                        _bombsfx.Play();
                     }
                 }
             }
