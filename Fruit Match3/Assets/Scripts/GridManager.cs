@@ -30,6 +30,7 @@ public class GridManager : MonoBehaviour
     private CheckMatches _checkMatch;
     private bool _isShowHint = false;
     private Coroutine _hintCoroutine;
+    private Coroutine _stopCoroutine;
     private int _multiMatch = 0;
 
     [Header("UI Settings")]

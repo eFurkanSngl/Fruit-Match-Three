@@ -7,25 +7,43 @@ using UnityEngine.UI;
 public class LevelSelects : MonoBehaviour
 {
     [SerializeField] private Button[] _levelSelectsButton;
-
-
     private void Awake()
     {
-        int UnLockedLevel = PlayerPrefs.GetInt("UnLockedLevel", 4);
+      
+        int unLockedLevel = PlayerPrefs.GetInt("unLockedLevel", 1);
 
         for (int i = 0; i < _levelSelectsButton.Length; i++)
         {
-            _levelSelectsButton[i].interactable = false;
+            _levelSelectsButton[i].interactable = (i < unLockedLevel);
         }
-        for (int i = 0; i < UnLockedLevel; i++)
-        {
-            _levelSelectsButton[i].interactable = true;
-        }
-
     }
     public void OpenLevel(int levelId)
     {
-        string levelName = "Level-" + levelId;
-        SceneManager.LoadScene(levelName);
+        PlayerPrefs.SetInt("CurrentLevel",levelId);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("level-"+levelId);
+    }
+
+    public void UnLockNextLevel()
+    {
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+
+        int unLockedLevel = PlayerPrefs.GetInt("unLockedLevel", 1);
+        if(currentLevel >= unLockedLevel)
+        {
+            PlayerPrefs.SetInt("unLockedLevel", currentLevel +1);
+            PlayerPrefs.Save();
+        }
+        Debug.Log("UnlockedLevel" + PlayerPrefs.GetInt("UnlockedLevel", 1));
+    }
+
+    private void OnEnable()
+    {
+        GameLevelEvent.LevelEvents += UnLockNextLevel;
+    }
+
+    private void OnDisable()
+    {
+        GameLevelEvent.LevelEvents -= UnLockNextLevel;
     }
 }

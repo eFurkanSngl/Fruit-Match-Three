@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -36,6 +37,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _decreaseTime;
     [SerializeField] private float _increaseTime;
 
+    private int _currentLevel;
+    private LevelSelects _levels;
+
     private void Start()
     {
         _timeSlider.maxValue = _sliderTime;  // maks sliderTime kadar ol
@@ -43,7 +47,8 @@ public class GameManager : MonoBehaviour
         StartTimeText();
         StartCoroutine(DelayStart());
         _scoreManager = FindObjectOfType<ScoreManager>();
-
+        _levels = FindObjectOfType<LevelSelects>();
+        _currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
     }
 
     private void StartTimeText()
@@ -125,6 +130,9 @@ public class GameManager : MonoBehaviour
             _nextLevelText.text = "Your Score: " + _scoreManager.Score;
             _nextlevelHighScore.text = "High Score: " + _scoreManager.HighScore;
             _nextLevelAudio.Play();
+
+            Debug.Log("GameLevelEvent Tetikleniyor");
+            GameLevelEvent.LevelEvents?.Invoke();
         }
         else
         {
