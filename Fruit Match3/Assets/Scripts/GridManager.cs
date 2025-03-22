@@ -169,8 +169,16 @@ public class GridManager : MonoBehaviour
             }
         }
     }
-
-    private void StartHintCoroutine()
+    public void StopHintRoutine()
+    {
+        if(_hintCoroutine != null)
+        {
+            StopCoroutine(HintRoutine());
+            _hintCoroutine = null;
+        }
+        _isShowHint = false;
+    }
+    public void StartHintCoroutine()
     {
         if (_hintCoroutine != null)
         {
@@ -217,7 +225,7 @@ public class GridManager : MonoBehaviour
     }
 
 
-    private void CreateGrid()
+    public void CreateGrid()
     {
         _tiles = new Tile[_gridX , _gridY];
 

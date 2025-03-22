@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     private int _currentLevel;
     private LevelSelects _levels;
+    private GridManager _gridManager;
 
     private void Start()
     {
@@ -47,8 +48,8 @@ public class GameManager : MonoBehaviour
         StartTimeText();
         StartCoroutine(DelayStart());
         _scoreManager = FindObjectOfType<ScoreManager>();
-        _levels = FindObjectOfType<LevelSelects>();
         _currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+        _gridManager = FindObjectOfType<GridManager>();
     }
 
     private void StartTimeText()
@@ -109,9 +110,10 @@ public class GameManager : MonoBehaviour
     {
         amountTime = _increaseTime;
         _sliderTime += amountTime;
-        if(_sliderTime > 30f)
+        float maxTime = 30f;
+        if(_sliderTime > maxTime)
         {
-            _sliderTime = 30f;
+            _sliderTime = maxTime;
         }
     }
     private void TimeWarningEffect()
@@ -141,8 +143,8 @@ public class GameManager : MonoBehaviour
             StopAllCoroutines();
             _gameOverText.text = "Your Score: " + _scoreManager.Score;
             _gameOverHighScore.text = "High Score: " + _scoreManager.HighScore;
-
             _gameOverAudio.Play();
+            _gridManager.StopHintRoutine();
         }
     }
 
@@ -162,6 +164,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DelayStart());
         _scoreManager.ScoreText.text ="Score: " + 0.ToString();
         _scoreManager.ResetScore();
+        _gridManager.StartHintCoroutine();
+
     }
 
     private void OnPause()
