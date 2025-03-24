@@ -436,7 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6641730159642510944, guid: f85155017fa858c45a4e9c16d6fc559e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1135
+      value: 1086
       objectReference: {fileID: 0}
     - target: {fileID: 6641730159642510944, guid: f85155017fa858c45a4e9c16d6fc559e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -681,7 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c273d0ab21a6a1488a555faa627c25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zoomMultip: 2
+  _zoomMultip: 1.9
 --- !u!114 &498491127 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8454075745833381113, guid: d7e383da67d36c445974c5e972c498e9, type: 3}
@@ -722,14 +722,14 @@ RectTransform:
   m_GameObject: {fileID: 511062434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 3.2, y: 3.2, z: 3.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 334963592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 720, y: 100}
+  m_AnchoredPosition: {x: 623, y: 49}
   m_SizeDelta: {x: 300, y: 250}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &511062436
@@ -1526,6 +1526,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
+      propertyPath: _sfxAudio
+      value: 
+      objectReference: {fileID: 195372202}
+    - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
       propertyPath: _timeText
       value: 
       objectReference: {fileID: 328513074}
@@ -1565,6 +1569,10 @@ PrefabInstance:
       propertyPath: _nextLevelPanel
       value: 
       objectReference: {fileID: 133203245}
+    - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 649231922}
     - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
       propertyPath: _gameOverHighScore
       value: 
@@ -1785,7 +1793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6641730159642510944, guid: f85155017fa858c45a4e9c16d6fc559e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1135
+      value: 1086
       objectReference: {fileID: 0}
     - target: {fileID: 6641730159642510944, guid: f85155017fa858c45a4e9c16d6fc559e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

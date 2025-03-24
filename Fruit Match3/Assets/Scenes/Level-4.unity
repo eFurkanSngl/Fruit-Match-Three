@@ -308,10 +308,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 150254517}
+--- !u!1001 &166669912
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4907088878847651861, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_Name
+      value: DestroySFx
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 240.47493
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 399.57693
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 642.8319
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779473552217247902, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
 --- !u!224 &173042713 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9126485350794073101, guid: 0a388ea32a3ff124291aa46098e39422, type: 3}
   m_PrefabInstance: {fileID: 355104105}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &201979030 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3161699107888999079, guid: b21b82e0527b70643a7bce311a6d0e56, type: 3}
+  m_PrefabInstance: {fileID: 166669912}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &210436150
 PrefabInstance:
@@ -1312,7 +1374,7 @@ MonoBehaviour:
   _tileBg: {fileID: 9117133927697253264, guid: d31560aea33f7744298f4b8e4fab34ef, type: 3}
   _swapDuration: 0.5
   swapEase: 28
-  _destroySound: {fileID: 0}
+  _destroySound: {fileID: 201979030}
   _destoryEffect: {fileID: 384635834}
   _horizontalPowerUpPrefab: {fileID: 1211797497835626560, guid: 58c301d89c6f774409e31ad98af96ffa, type: 3}
   _verticalPowerUpPrefab: {fileID: 44761556218524431, guid: cfd1c10101224374ca2938d1eb6e543b, type: 3}
@@ -1416,6 +1478,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
+      propertyPath: _sfxAudio
+      value: 
+      objectReference: {fileID: 201979030}
+    - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
       propertyPath: _timeText
       value: 
       objectReference: {fileID: 1888564607}
@@ -1455,6 +1521,10 @@ PrefabInstance:
       propertyPath: _nextLevelPanel
       value: 
       objectReference: {fileID: 641469762}
+    - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 1503348385}
     - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
       propertyPath: _gameOverHighScore
       value: 
@@ -2221,3 +2291,4 @@ SceneRoots:
   - {fileID: 899756162}
   - {fileID: 1346809328}
   - {fileID: 1658043137}
+  - {fileID: 166669912}

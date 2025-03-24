@@ -6928,6 +6928,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
+      propertyPath: _sfxAudio
+      value: 
+      objectReference: {fileID: 1239551308}
+    - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
       propertyPath: _timeText
       value: 
       objectReference: {fileID: 514869672}
@@ -6967,6 +6971,10 @@ PrefabInstance:
       propertyPath: _nextLevelPanel
       value: 
       objectReference: {fileID: 1299144532}
+    - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
+      propertyPath: _backgroundMusic
+      value: 
+      objectReference: {fileID: 1093096784}
     - target: {fileID: 179184499930032006, guid: 0e8a57ab557d5384fa0cdb73f861381d, type: 3}
       propertyPath: _gameOverHighScore
       value: 

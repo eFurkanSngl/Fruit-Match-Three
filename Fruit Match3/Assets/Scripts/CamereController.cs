@@ -20,7 +20,7 @@ public class CamereController : MonoBehaviour
         _camera.transform.position = new Vector3(centerX, centerY, -10);
 
         float maxSize = Mathf.Max(gridWidth, gridHeight);
-        _camera.orthographicSize = (maxSize / 2)* _zoomMultip;
+        _camera.orthographicSize = (maxSize / 1.9f)* _zoomMultip;
         Debug.Log("Cam is work");
     }
 

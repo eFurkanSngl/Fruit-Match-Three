@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private AudioSource _gameOverAudio;
     [SerializeField] private AudioSource _nextLevelAudio;
+    [SerializeField] private AudioSource _backgroundMusic;
+    [SerializeField] private AudioSource _sfxAudio;
+
+
 
     private bool _stopTimer= false;
     private WaitForSeconds _timer = new WaitForSeconds(1f);
@@ -38,8 +42,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _increaseTime;
 
     private int _currentLevel;
-    private LevelSelects _levels;
-    private GridManager _gridManager;
 
     private void Start()
     {
@@ -49,7 +51,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DelayStart());
         _scoreManager = FindObjectOfType<ScoreManager>();
         _currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
-        _gridManager = FindObjectOfType<GridManager>();
     }
 
     private void StartTimeText()
@@ -99,6 +100,9 @@ public class GameManager : MonoBehaviour
             {
                 _stopTimer = true;
                 _sliderTime = 0;
+                _timeText.transform.DOKill();
+                _timeText.color = Color.white;
+        
                 GameOver();
             }
 
@@ -135,6 +139,7 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("GameLevelEvent Tetikleniyor");
             GameLevelEvent.LevelEvents?.Invoke();
+           
         }
         else
         {
@@ -144,7 +149,11 @@ public class GameManager : MonoBehaviour
             _gameOverText.text = "Your Score: " + _scoreManager.Score;
             _gameOverHighScore.text = "High Score: " + _scoreManager.HighScore;
             _gameOverAudio.Play();
-            _gridManager.StopHintRoutine();
+            RoutineEvents.StopRoutineEvent?.Invoke();
+            _backgroundMusic.Stop();
+            _sfxAudio.Stop();
+            _timeSlider.animator.enabled = false;
+            _timeSlider.animator.speed = 0;
         }
     }
 
@@ -164,8 +173,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DelayStart());
         _scoreManager.ScoreText.text ="Score: " + 0.ToString();
         _scoreManager.ResetScore();
-        _gridManager.StartHintCoroutine();
-
+        RoutineEvents.StartRoutineEvent?.Invoke();
+        _backgroundMusic.Play();
+        _timeSlider.animator.enabled = true;
+        _timeSlider.animator.speed = 1;
     }
 
     private void OnPause()

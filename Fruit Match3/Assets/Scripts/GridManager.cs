@@ -45,10 +45,6 @@ public class GridManager : MonoBehaviour
     [SerializeField] private AudioSource _sfx;
     [SerializeField] private AudioSource _bombsfx;
 
-
-
-
-
     private void Start()
     {
         CreateGrid();
@@ -591,8 +587,19 @@ public class GridManager : MonoBehaviour
         UnRegisterEvents();
     }
 
-    private void RegisterEvents() => GameEvent.OnClickEvents += SelectedTile;
-    private void UnRegisterEvents() => GameEvent.OnClickEvents -= SelectedTile;
+    private void RegisterEvents()
+    {
+        GameEvent.OnClickEvents += SelectedTile;
+        RoutineEvents.StartRoutineEvent += StartHintCoroutine;
+        RoutineEvents.StartRoutineEvent += StopHintRoutine;
+
+    } 
+    private void UnRegisterEvents()
+    { 
+       GameEvent.OnClickEvents -= SelectedTile;
+       RoutineEvents.StartRoutineEvent -= StartHintCoroutine;
+       RoutineEvents.StopRoutineEvent -= StopHintRoutine;  
+    } 
     // Mouse Sol Týk Eventi.
 
 
