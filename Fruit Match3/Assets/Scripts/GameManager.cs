@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour
             _nextLevelText.text = "Your Score: " + _scoreManager.Score;
             _nextlevelHighScore.text = "High Score: " + _scoreManager.HighScore;
             _nextLevelAudio.Play();
+            _timeSlider.animator.speed = 0;
 
             Debug.Log("GameLevelEvent Tetikleniyor");
             GameLevelEvent.LevelEvents?.Invoke();
@@ -152,7 +153,6 @@ public class GameManager : MonoBehaviour
             RoutineEvents.StopRoutineEvent?.Invoke();
             _backgroundMusic.Stop();
             _sfxAudio.Stop();
-            _timeSlider.animator.enabled = false;
             _timeSlider.animator.speed = 0;
         }
     }
@@ -175,27 +175,18 @@ public class GameManager : MonoBehaviour
         _scoreManager.ResetScore();
         RoutineEvents.StartRoutineEvent?.Invoke();
         _backgroundMusic.Play();
-        _timeSlider.animator.enabled = true;
         _timeSlider.animator.speed = 1;
+        GameEvent.ShuffleEvents?.Invoke();
     }
 
     private void OnPause()
     {
         _isPaused = true;  // oyun duraklatýldý.
-        //if(_coroutine != null)
-        //{
-        //    StopCoroutine(_coroutine); // Coroutinler her zaman direkt Method referans ile durmaz o yüzden coroutineile durdurduk
-        //    _coroutine = null;
-        //}
         Time.timeScale = 0f;
     }
     private void OnResume()
     {
         _isPaused = false;
-        //if(_coroutine == null)
-        //{
-        //    _coroutine = StartCoroutine(StartTime());
-        //}
        Time.timeScale = 1f;
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
 using static UnityEngine.Rendering.DebugUI.Table;
+using TMPro;
 
 public class GridManager : MonoBehaviour
 {
@@ -36,6 +37,11 @@ public class GridManager : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private AudioSource _destroySound;
     [SerializeField] private GameObject _destoryEffect;
+    [SerializeField] private TextMeshProUGUI _combotext;
+    private int _comboCount = 0;
+    private float _comboTimer = 0;
+    private float _comboResetTime = 2f;
+    private bool _isComboActive = false;
 
     [Header("Power Up Settings")]
     [SerializeField] private GameObject _horizontalPowerUpPrefab;
@@ -54,6 +60,20 @@ public class GridManager : MonoBehaviour
         StartHintCoroutine();
     }
 
+    private void GenerateNewGrid() // Eski Tilelarý silip yeni tile yaratýyoruz
+    {
+        for(int i = 0; i <_gridX; i++)
+        {
+            for(int y = 0; y < _gridY; y++)
+            {
+                if(_tiles[i,y] != null)
+                {
+                    Destroy(_tiles[i,y].gameObject);
+                }
+            }
+        }
+        CreateGrid();
+    }
     private void HandlePowerUpMatch(int matchCount)//multiMatchden alýyor sayýmý
     {
         if (matchCount >= 4 && matchCount <= 6) // bu iki sayý arasýnda ise eþleþme powerUp
@@ -169,7 +189,7 @@ public class GridManager : MonoBehaviour
     {
         if(_hintCoroutine != null)
         {
-            StopCoroutine(HintRoutine());
+            StopCoroutine(RainDownRoutine());
             _hintCoroutine = null;
         }
         _isShowHint = false;
@@ -327,7 +347,7 @@ public class GridManager : MonoBehaviour
         // Düþme animasyonu
         newTileObj.transform.DOMove(targetPos, 0.3f).SetEase(Ease.OutBounce);
     }
-
+  
     public void HasAnyMatches() // Eþleþme var ise yok et
     {
         List<Tile> matchedTile = _checkMatch.FindTileMatches(_tiles, _gridX, _gridY);
@@ -339,6 +359,7 @@ public class GridManager : MonoBehaviour
                 DestroyAnim(tile);
                 ScoreEvents.GameScoreEvents?.Invoke(5);
                 TileDestroySound();
+
             }
 
             _multiMatch++;
@@ -591,14 +612,16 @@ public class GridManager : MonoBehaviour
     {
         GameEvent.OnClickEvents += SelectedTile;
         RoutineEvents.StartRoutineEvent += StartHintCoroutine;
-        RoutineEvents.StartRoutineEvent += StopHintRoutine;
+        RoutineEvents.StopRoutineEvent += StopHintRoutine;
+        GameEvent.ShuffleEvents += GenerateNewGrid;
 
     } 
     private void UnRegisterEvents()
     { 
        GameEvent.OnClickEvents -= SelectedTile;
        RoutineEvents.StartRoutineEvent -= StartHintCoroutine;
-       RoutineEvents.StopRoutineEvent -= StopHintRoutine;  
+       RoutineEvents.StopRoutineEvent -= StopHintRoutine;
+        GameEvent.ShuffleEvents -= GenerateNewGrid; 
     } 
     // Mouse Sol Týk Eventi.
 
