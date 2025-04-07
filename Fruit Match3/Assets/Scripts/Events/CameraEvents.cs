@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-public static class CameraFilterEvents
+public static class CameraEvents
 {
-    public static UnityAction<int , int> CameraEvents;
+    public static UnityAction CameraEvent;
 }
 

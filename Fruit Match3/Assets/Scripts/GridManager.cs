@@ -35,13 +35,13 @@ public class GridManager : MonoBehaviour
     private int _multiMatch = 0;
 
     [Header("UI Settings")]
-    [SerializeField] private AudioSource _destroySound;
     [SerializeField] private GameObject _destoryEffect;
-    [SerializeField] private TextMeshProUGUI _combotext;
-    private int _comboCount = 0;
-    private float _comboTimer = 0;
-    private float _comboResetTime = 2f;
-    private bool _isComboActive = false;
+    //[SerializeField] private TextMeshProUGUI _combotext;
+
+    //private int _comboCount = 0;
+    //private float _comboTimer = 0;
+    //private float _comboResetTime = 2f;
+    //private bool _isComboActive = false;
 
     [Header("Power Up Settings")]
     [SerializeField] private GameObject _horizontalPowerUpPrefab;
@@ -373,11 +373,9 @@ public class GridManager : MonoBehaviour
     }
     public void TileDestroySound()
     {
-        if(_destroySound != null)
-        {
-            _destroySound.Play();
-            //Debug.Log("Music On Play");
-        }
+      
+        CameraEvents.CameraEvent?.Invoke();
+        // Tek bir yerden dinleyip Tetikleme performans artýþý.
     }
 
     IEnumerator DestroyRoutine()

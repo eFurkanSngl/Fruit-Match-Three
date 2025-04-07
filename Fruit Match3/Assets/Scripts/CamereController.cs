@@ -7,10 +7,18 @@ public class CamereController : MonoBehaviour
 {
     [SerializeField] private float _zoomMultip = 1.2f;
     private Camera _camera;
-
+    [SerializeField] AudioSource _destroySource;
     private void Start()
     {
         _camera = Camera.main;
+    }
+
+    private void DestroySound()
+    {
+        if(_destroySource != null)
+        {
+            _destroySource.Play();
+        }
     }
     private void SizeFilterCam(int gridWidth , int gridHeight)
     {
@@ -32,9 +40,11 @@ public class CamereController : MonoBehaviour
 
         //CameraFilterEvents.CameraEvents += SizeFilterCam;
         GridManager.GridManagerEvent += SizeFilterCam;
+        CameraEvents.CameraEvent += DestroySound;
     }
     private void UnRegisterEvents() {
         GridManager.GridManagerEvent -= SizeFilterCam;
+        CameraEvents.CameraEvent -= DestroySound;
         //CameraFilterEvents.CameraEvents -= SizeFilterCam;
     }  
 
