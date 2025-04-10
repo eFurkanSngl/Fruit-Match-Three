@@ -34,8 +34,8 @@ public class GridManager : MonoBehaviour
     private Coroutine _stopCoroutine;
     private int _multiMatch = 0;
 
-    [Header("UI Settings")]
-    [SerializeField] private GameObject _destoryEffect;
+    //[Header("UI Settings")]
+    //[SerializeField] private GameObject _destoryEffect;
     //[SerializeField] private TextMeshProUGUI _combotext;
 
     //private int _comboCount = 0;
@@ -394,24 +394,40 @@ public class GridManager : MonoBehaviour
     private void DestroyAnim(Tile tile)
     {
 
-        if (_destoryEffect != null)
-        {
-            GameObject effect = Instantiate(_destoryEffect, tile.transform.position, Quaternion.identity);
-            ParticleSystem ps = effect.GetComponent<ParticleSystem>();
-            if (ps != null)
-            {
-                ps.Play();
-            }
+        //if (_destoryEffect != null)
+        //{
+        //    GameObject effect = Instantiate(_destoryEffect, tile.transform.position, Quaternion.identity);
+        //    ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+        //    if (ps != null)
+        //    {
+        //        ps.Play();
+        //    }
 
-            Destroy(effect, 1f);
+        //    Destroy(effect, 1f);
+        //}
+
+        GameObject effect = ParticlePoolManager.Instance.GetParticle();
+        effect.transform.position = tile.transform.position;
+
+        ParticleSystem ps = effect.GetComponent<ParticleSystem>();
+        if(ps != null)
+        {
+            ps.Play();
+            StartCoroutine(ReturnParticlePool(effect, 0.8f));
+
         }
-     
         tile.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.Flash);
         tile.GetComponent<SpriteRenderer>().DOFade(0.2f, 0.2f).SetEase(Ease.Flash)
             .OnComplete(() =>
             {
                 Destroy(tile.gameObject);
             });
+    }
+
+    private IEnumerator ReturnParticlePool(GameObject obj , float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ParticlePoolManager.Instance.ReturnParticle(obj);
     }
     private int HasMatchStart(int x, int y)
     {

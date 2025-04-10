@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
     }
     private void TimeWarningEffect()
     {
-        _timeText.color = Color.red;
+        _timeText.color = Color.black;
         _timeText.transform.DOShakePosition(1f, 10f, 10, 90, false, true).
             SetLoops(-1, LoopType.Restart);
     }

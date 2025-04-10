@@ -563,6 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _zoomMultip: 2
+  _destroySource: {fileID: 0}
 --- !u!82 &364278763
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5879,8 +5880,6 @@ MonoBehaviour:
   _tileBg: {fileID: 9117133927697253264, guid: d31560aea33f7744298f4b8e4fab34ef, type: 3}
   _swapDuration: 0.5
   swapEase: 28
-  _destroySound: {fileID: 1239551308}
-  _destoryEffect: {fileID: 661104804}
   _horizontalPowerUpPrefab: {fileID: 1211797497835626560, guid: 58c301d89c6f774409e31ad98af96ffa, type: 3}
   _verticalPowerUpPrefab: {fileID: 44761556218524431, guid: cfd1c10101224374ca2938d1eb6e543b, type: 3}
   _bombPowerUpPrefab: {fileID: 6820486603212637411, guid: f911071e194c80546b83a93eb5dc929f, type: 3}
@@ -7185,6 +7184,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &2117974183
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1366678228703843582, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761732680838748193, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: _particleEffect
+      value: 
+      objectReference: {fileID: 661104804}
+    - target: {fileID: 8410169533420380826, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
+      propertyPath: m_Name
+      value: ParticlePoolManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e293e1887424254fb18ba87d804be94, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -7206,3 +7266,4 @@ SceneRoots:
   - {fileID: 1900430621}
   - {fileID: 1658883810}
   - {fileID: 1488964924}
+  - {fileID: 2117974183}
