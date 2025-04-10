@@ -84,7 +84,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!114 &5321395273156539145
 MonoBehaviour:
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileId: 18
+  powerUpType: 0
+  _animator: {fileID: 0}
 --- !u!58 &2631487772005853534
 CircleCollider2D:
   m_ObjectHideFlags: 0
