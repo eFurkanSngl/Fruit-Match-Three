@@ -37,7 +37,7 @@ public class PauseBtn : UIBTN
     private void SettingsPanelOutro()
     {
         _canvasGroup.DOFade(0,_tweenDuration).SetUpdate(true);
-        _settingsBtnTransform.DOAnchorPosX(720,_tweenDuration).SetUpdate(true);
+        _settingsBtnTransform.DOAnchorPosX(415,_tweenDuration).SetUpdate(true);
        _settingsTransform.DOAnchorPosY(_topPosY, _tweenDuration).SetUpdate(true);
     }
 

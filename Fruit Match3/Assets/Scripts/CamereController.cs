@@ -22,14 +22,44 @@ public class CamereController : MonoBehaviour
     }
     private void SizeFilterCam(int gridWidth , int gridHeight)
     {
-        float centerX = gridWidth / 2.25f;
-        float centerY = gridHeight / 2.5f;
+        float aspect = (float)Screen.width / Screen.height;
+        // Ekranın En boy oranını bulduk.Her ekran için farklı.
 
-        _camera.transform.position = new Vector3(centerX, centerY, -10);
 
-        float maxSize = Mathf.Max(gridWidth, gridHeight);
-        _camera.orthographicSize = (maxSize / 2f)* _zoomMultip;
-        Debug.Log("Cam is work");
+        float targetWidth = gridWidth + 1f; 
+        float targetHeight = gridHeight + 1f;
+        // Grid boyutunu aldık ve padding boşluk verdik
+
+        float camSizeByHeight = targetHeight / 2f;
+        float camSizeByWidth = (targetWidth / aspect) / 2f;
+
+        //Kameranın ortgraphic size'ını hesaplıyoruz
+        
+
+        float finalSize = Mathf.Max(camSizeByHeight, camSizeByWidth);
+        _camera.orthographicSize = finalSize;
+
+        // grid taşmaması için yüksek olan değeri aldık
+        // ekran dar ve uzun ise = genişliğe göre çekil
+        // ekran geniş ise = yüksekliğe göre ayarla.
+
+        // Kamerayı ortala
+        float centerX = (gridWidth - 1) / 2f;
+        float centerY = (gridHeight - 1) / 2f;
+
+        _camera.transform.position = new Vector3(centerX, centerY, -10f);
+
+        // gridin tam ortasını bulup kamerayı konumlandırıyoruz.
+
+
+        //float centerX = gridWidth / 2.25f;
+        //float centerY = gridHeight / 2.5f;
+
+        //_camera.transform.position = new Vector3(centerX, centerY, -10);
+
+        //float maxSize = Mathf.Max(gridWidth, gridHeight);
+        //_camera.orthographicSize = (maxSize / 2f)* _zoomMultip;
+        //Debug.Log("Cam is work");
     }
 
     private void OnEnable()=> RegisterEvents();
