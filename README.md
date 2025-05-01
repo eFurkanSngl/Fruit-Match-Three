@@ -1,41 +1,49 @@
-🎮 Match3 Puzzle Game
-Match3 Puzzle Game is a colorful and casual 2D puzzle game where players match 3 or more identical tiles to clear the board and reach the target score. Simple to play, challenging to master!
+🍬 Match-3 Mobile Game
+A Unity-powered Match-3 mobile game project optimized for a wide range of mobile devices.
 
-🎯 Game Objective
-Match at least 3 tiles of the same color in a row or column to clear them from the board.
-Create combos to earn more points
-Use power-ups like Row Bombs, Column Bombs, and Cross Bombs for massive clears
-Reach the target score before running out of moves!
+🔧 Technologies Used
+Unity 2022.3.x (LTS)
+C#
+DOTween (Demigiant): Tween animations
+UnityEvents & UnityAction: Custom event handling
+Custom Event System: For inter-system communication (Grid, UI, Timer, etc.)
+Object Pooling: For particle effect optimization
+Audio Mixer: Separate channels for SFX and Music
+Safe Area + Aspect Ratio Scaling: UI adaptation for different devices
+PlayerPrefs: For saving High Score, sound settings, level unlock status, etc.
 
-🚀 Features
-Chain Reaction System: New tiles drop and can create new matches automatically
+🎮 Gameplay Features
+5x5 tile-based match system
+Match 3 or more tiles to destroy them
+
 Power-Ups:
-3-match: Vertical Bomb
-4-match: Horizontal Bomb
-5-match: Cross Bomb
-Scoring & Progression: Pass the level if you reach the goal, or see Game Over
-Visual & Audio Feedback: Includes particle and sound effects for matches and bombs
+Match 4: Vertical bomb
+Match 5: Horizontal bomb
+Match 6: Bomb that destroys adjacent tiles
+Timed gameplay (30s initial time, extended with matches)
+Combo system with visual feedback (1x, 2x, 3x, ...)
+Level progression based on reaching target score
+Game Over if target score is not reached in time
+Includes How to Play screen, audio settings, level selection UI
 
-⚙️ Tech Stack & Implementation Details
-Engine: Unity 2022.3.27f1
-Tools Used: DoTween (for animations), Odin Inspector (for custom editor tools)
+🧠 Code Structure & Architecture
+Written with OOP (Object-Oriented Programming) principles
+Each system has a single responsibility
+Decoupled design using events
+Code is modular and reusable
+Singleton pattern applied where appropriate (e.g., GameManager)
 
-Audio System: Integrated SFX system for matches, power-ups, and UI interactions
+🚀 Performance Optimization
+Object Pooling used for destroy particle effects
+DOTween capacity optimized to avoid allocation spikes
+Shared AudioSource used for sound playback (avoiding per-tile overhead)
 
-Visual Effects:                              
-Custom Particle Systems for match feedback and power-up explosions
-Object Pooling applied to particle effects for performance optimization
+📱 Mobile Adaptation
+Supports Safe Area for devices with notches
+Dynamic camera scaling based on screen aspect ratio
+Responsive UI layout and properly configured Canvas settings
 
-Grid Logic:
-Match detection for horizontal and vertical lines
-Automatic tile refill and chain reactions
 
-Power-Up System:
-Vertical, Horizontal, and Cross Bombs based on match count
-
-Level System:
-Target score to win, Game Over if not reached
-Level transition logic implemented
 
 Game Referance:
 
