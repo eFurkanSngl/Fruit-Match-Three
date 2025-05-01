@@ -1,6 +1,7 @@
 🍬 Match-3 Mobile Game
 A Unity-powered Match-3 mobile game project optimized for a wide range of mobile devices.
 
+
 🔧 Technologies Used
 Unity 2022.3.x (LTS)
 
@@ -19,6 +20,7 @@ Audio Mixer: Separate channels for SFX and Music
 Safe Area + Aspect Ratio Scaling: UI adaptation for different devices
 
 PlayerPrefs: For saving High Score, sound settings, level unlock status, etc.
+
 
 🎮 Gameplay Features
 
@@ -44,6 +46,7 @@ Game Over if target score is not reached in time
 
 Includes How to Play screen, audio settings, level selection UI
 
+
 🧠 Code Structure & Architecture
 
 Written with OOP (Object-Oriented Programming) principles
@@ -56,6 +59,7 @@ Code is modular and reusable
 
 Singleton pattern applied where appropriate (e.g., GameManager)
 
+
 🚀 Performance Optimization
 
 Object Pooling used for destroy particle effects
@@ -63,6 +67,7 @@ Object Pooling used for destroy particle effects
 DOTween capacity optimized to avoid allocation spikes
 
 Shared AudioSource used for sound playback (avoiding per-tile overhead)
+
 
 📱 Mobile Adaptation
 
