@@ -81,6 +81,8 @@ Responsive UI layout and properly configured Canvas settings
 
 Game Referance:
 
+You Can Click the Link to Play the Game: https://frknsngl.itch.io/funny-match3
+
 [Movie_003.webm](https://github.com/user-attachments/assets/15f5c6cb-77cd-4260-ba7e-81146e3c7ac9)
 
 
